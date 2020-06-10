@@ -1,0 +1,6 @@
+framework module ObjCUI {
+  umbrella header "ObjCUI-umbrella.h"
+
+  export *
+  module * { export * }
+}
