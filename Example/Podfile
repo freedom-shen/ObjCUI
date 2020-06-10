@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'ObjCUI_Example' do
+  pod 'ObjCUI', :path => '../'
+
+  target 'ObjCUI_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
