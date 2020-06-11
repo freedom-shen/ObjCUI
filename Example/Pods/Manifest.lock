@@ -1,15 +1,22 @@
 PODS:
-  - ObjCUI (0.1.0)
+  - Masonry (1.1.0)
+  - ObjCUI (0.1.0):
+    - Masonry
 
 DEPENDENCIES:
   - ObjCUI (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Masonry
 
 EXTERNAL SOURCES:
   ObjCUI:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ObjCUI: b88f18b921c47418253246289cd5addc186a7566
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  ObjCUI: 4919cf7bb1e9dc3bd5086a0ec08eef9207b68567
 
 PODFILE CHECKSUM: e2a2bd230b078fdd0edce936fbe2818be6266676
 

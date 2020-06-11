@@ -10,6 +10,11 @@
 #endif
 #endif
 
+#import "OCUIPadding.h"
+#import "OCInterface.h"
+#import "OCUIDefine.h"
+#import "OCUIText.h"
+#import "OCUIView.h"
 
 FOUNDATION_EXPORT double ObjCUIVersionNumber;
 FOUNDATION_EXPORT const unsigned char ObjCUIVersionString[];

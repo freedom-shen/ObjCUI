@@ -1,22 +1,27 @@
 {
   "name": "ObjCUI",
   "version": "0.1.0",
-  "summary": "A short description of ObjCUI.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/沈晓敏/ObjCUI",
+  "summary": "使用Objc编写类似声明氏UI",
+  "homepage": "https://github.com/freedom-shen/ObjCUI",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "沈晓敏": "shenxm@sq108.com"
+    "沈晓敏": "xxkqw1992@gmail.com"
   },
   "source": {
-    "git": "https://github.com/沈晓敏/ObjCUI.git",
+    "git": "https://github.com/freedom-shen/ObjCUI",
     "tag": "0.1.0"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "ObjCUI/Classes/**/*"
+  "source_files": "ObjCUI/Classes/**/*",
+  "public_header_files": "ObjCUI/Classes/**/*.h",
+  "dependencies": {
+    "Masonry": [
+
+    ]
+  }
 }

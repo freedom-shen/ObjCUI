@@ -24,6 +24,7 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		DC02C4626B45F1825AFBFC90 /* OCUIKitTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DC02CF95AD74B6EEDEAC17B9 /* OCUIKitTestVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C440C41C950C3E6731CF5CD3 /* ObjCUI.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = ObjCUI.podspec; path = ../ObjCUI.podspec; sourceTree = "<group>"; };
 		CA035FE6D11F2849932BC119 /* Pods_ObjCUI_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ObjCUI_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC02C7C27FEAC1770B264DA8 /* OCUIKitTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIKitTestVC.h; sourceTree = "<group>"; };
+		DC02CF95AD74B6EEDEAC17B9 /* OCUIKitTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUIKitTestVC.m; sourceTree = "<group>"; };
 		F339B89D58093B5E84F3F08B /* Pods-ObjCUI_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjCUI_Tests.debug.xcconfig"; path = "Target Support Files/Pods-ObjCUI_Tests/Pods-ObjCUI_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,6 +143,7 @@
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				DC02C127B7E665453D46370B /* Feature */,
 			);
 			name = "Example for ObjCUI";
 			path = ObjCUI;
@@ -195,6 +199,15 @@
 				22AA4A3A58308AC20165ACE2 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		DC02C127B7E665453D46370B /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				DC02CF95AD74B6EEDEAC17B9 /* OCUIKitTestVC.m */,
+				DC02C7C27FEAC1770B264DA8 /* OCUIKitTestVC.h */,
+			);
+			path = Feature;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,10 +315,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ObjCUI_Example/Pods-ObjCUI_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjCUI/ObjCUI.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjCUI.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,6 +382,7 @@
 				6003F59E195388D20070C39A /* OCUIAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* OCUIViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				DC02C4626B45F1825AFBFC90 /* OCUIKitTestVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
