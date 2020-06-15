@@ -33,38 +33,30 @@
 }
 
 - (OCUIContainer *(^)(UIColor *backgroundColor))backgroundColor {
-    @WeakSelf(self);
     return ^OCUIContainer *(UIColor *backgroundColor) {
-        @StrongSelf(weakSelf)
-        strongSelf.bindView.backgroundColor = backgroundColor;
-        return strongSelf;
+        self.bindView.backgroundColor = backgroundColor;
+        return self;
     };
 }
 
 - (OCUIContainer *(^)(double width))width {
-    @WeakSelf(self);
     return ^OCUIContainer *(double width) {
-        @StrongSelf(weakSelf)
-        strongSelf.containerMap[@(OCUILayoutWidthType)] = @(width);
-        return strongSelf;
+        self.containerMap[@(OCUILayoutWidthType)] = @(width);
+        return self;
     };
 }
 
 - (OCUIContainer *(^)(double height))height {
-    @WeakSelf(self);
     return ^OCUIContainer *(double height) {
-        @StrongSelf(weakSelf)
-        strongSelf.containerMap[@(OCUILayoutHeightType)] = @(height);
-        return strongSelf;
+        self.containerMap[@(OCUILayoutHeightType)] = @(height);
+        return self;
     };
 }
 
 - (OCUIContainer *(^)(OCUIContainer *childView))childView {
-    @WeakSelf(self);
     return ^OCUIContainer *(OCUIContainer *childContainer) {
-        @StrongSelf(weakSelf)
-        [strongSelf addSubContainer:childContainer];
-        return strongSelf;
+        [self addSubContainer:childContainer];
+        return self;
     };
 }
 

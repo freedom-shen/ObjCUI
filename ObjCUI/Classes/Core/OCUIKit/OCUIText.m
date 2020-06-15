@@ -26,58 +26,46 @@
 }
 
 - (OCUIText *(^)(NSString *text))text {
-    @WeakSelf(self);
     return ^OCUIText *(NSString *text) {
-        @StrongSelf(weakSelf);
-        strongSelf.label.text = text;
-        return strongSelf;
+        self.label.text = text;
+        return self;
     };
 }
 
 - (OCUIText *(^)(UIColor *))textColor {
-    @WeakSelf(self);
     return ^OCUIText *(UIColor *color) {
-        @StrongSelf(weakSelf);
-        strongSelf.label.textColor = color;
-        return strongSelf;
+        self.label.textColor = color;
+        return self;
     };
 }
 
 - (OCUIText *(^)(UIFont *))font {
-    @WeakSelf(self);
     return ^OCUIText *(UIFont *font) {
-        @StrongSelf(weakSelf);
-        strongSelf.label.font = font;
-        return strongSelf;
+        self.label.font = font;
+        return self;
     };
 }
 
 - (OCUIText *(^)(NSTextAlignment))textAlignment {
-    @WeakSelf(self);
     return ^OCUIText *(NSTextAlignment alignment) {
-        @StrongSelf(weakSelf);
-        strongSelf.label.textAlignment = alignment;
-        return strongSelf;
+        self.label.textAlignment = alignment;
+        return self;
     };
 }
 
 - (OCUIText *(^)(int))numberOfLines; {
-    @WeakSelf(self);
     return ^OCUIText *(int numberOfLines) {
-        @StrongSelf(weakSelf);
-        strongSelf.label.numberOfLines = numberOfLines;
-        return strongSelf;
+        self.label.numberOfLines = numberOfLines;
+        return self;
     };
 }
 
 - (OCUIText *(^)(void(^)(UILabel *label)))maker {
-    @WeakSelf(self);
     return ^OCUIText *(void (^pFunction)(UILabel *)) {
-        @StrongSelf(weakSelf);
         if (pFunction) {
-            pFunction(strongSelf.label);
+            pFunction(self.label);
         }
-        return strongSelf;
+        return self;
     };
 }
 

@@ -24,118 +24,94 @@
 }
 
 - (OCUITextFiled *(^)(NSString *placeHolder))placeHolder {
-    @WeakSelf(self);
     return ^OCUITextFiled *(NSString *placeHolder) {
-        @StrongSelf(weakSelf);
-        strongSelf.textField.placeholder = placeHolder;
-        return strongSelf;
+        self.textField.placeholder = placeHolder;
+        return self;
     };
 }
 
 - (OCUITextFiled *(^)(UIColor *textColor))textColor {
-    @WeakSelf(self);
     return ^OCUITextFiled *(UIColor *textColor) {
-        @StrongSelf(weakSelf);
-        strongSelf.textField.textColor = textColor;
-        return strongSelf;
+        self.textField.textColor = textColor;
+        return self;
     };
 }
 
 - (OCUITextFiled *(^)(UIFont *font))font {
-    @WeakSelf(self);
     return ^OCUITextFiled *(UIFont *font) {
-        @StrongSelf(weakSelf);
-        strongSelf.textField.font = font;
-        return strongSelf;
+        self.textField.font = font;
+        return self;
     };
 }
 
 - (OCUITextFiled *(^)(NSAttributedString *attributedPlaceholder))attributedPlaceholder {
-    @WeakSelf(self);
     return ^OCUITextFiled *(NSAttributedString *attributedString) {
-        @StrongSelf(weakSelf);
-        strongSelf.textField.attributedPlaceholder = attributedString;
-        return strongSelf;
+        self.textField.attributedPlaceholder = attributedString;
+        return self;
     };
 }
 
 
 - (OCUITextFiled *(^)(BOOL secureTextEntry))secureTextEntry {
-    @WeakSelf(self);
     return ^OCUITextFiled *(BOOL secure) {
-        @StrongSelf(weakSelf);
-        strongSelf.textField.secureTextEntry = secure;
-        return strongSelf;
+        self.textField.secureTextEntry = secure;
+        return self;
     };
 }
 
 - (OCUITextFiled *(^)(UIKeyboardType keyboardType))keyBordType {
-    @WeakSelf(self);
     return ^OCUITextFiled *(UIKeyboardType keyboardType) {
-        @StrongSelf(weakSelf);
-        strongSelf.textField.keyboardType = keyboardType;
-        return strongSelf;
+        self.textField.keyboardType = keyboardType;
+        return self;
     };
 }
 
 - (OCUITextFiled *(^)(void (^)(UITextField *)))maker {
-    @WeakSelf(self);
     return ^OCUITextFiled *(void (^pFunction)(UITextField *)) {
-        @StrongSelf(weakSelf);
         if (pFunction) {
-            pFunction(strongSelf.textField);
+            pFunction(self.textField);
         }
-        return strongSelf;
+        return self;
     };
 }
 
 - (OCUITextFiled *(^)(UIImage *background))background {
-    @WeakSelf(self);
     return ^OCUITextFiled *(UIImage *background) {
-        @StrongSelf(weakSelf);
-        strongSelf.textField.background = background;
-        return strongSelf;
+        self.textField.background = background;
+        return self;
     };
 }
 
 - (OCUITextFiled *(^)(UIImage *disabledBackground))disabledBackground {
-    @WeakSelf(self);
     return ^OCUITextFiled *(UIImage *disabledBackground) {
-        @StrongSelf(weakSelf);
-        strongSelf.textField.disabledBackground = disabledBackground;
-        return strongSelf;
+        self.textField.disabledBackground = disabledBackground;
+        return self;
     };
 }
 
 - (OCUITextFiled *(^)(BOOL clearsOnBeginEditing))clearsOnBeginEditing {
-    @WeakSelf(self);
     return ^OCUITextFiled *(BOOL clearsOnBeginEditing) {
-        @StrongSelf(weakSelf);
-        strongSelf.textField.clearsOnBeginEditing = clearsOnBeginEditing;
-        return strongSelf;
+        self.textField.clearsOnBeginEditing = clearsOnBeginEditing;
+        return self;
     };
 }
 
 - (OCUITextFiled *(^)(UIControlEvents controlEvents, void(^)(UITextField *textFiled)))action {
-    @WeakSelf(self);
     return ^OCUITextFiled *(UIControlEvents controlEvents, void (^pFunction)(UITextField *)) {
-        @StrongSelf(weakSelf);
-        if (!strongSelf.eventMap[@(controlEvents)]) {
-            strongSelf.eventMap[@(controlEvents)] = [[OCUIControllerWrapper alloc] initWithHandler:pFunction];
+        if (!self.eventMap[@(controlEvents)]) {
+            self.eventMap[@(controlEvents)] = [[OCUIControllerWrapper alloc] initWithHandler:pFunction];
         }
-        [strongSelf.textField addTarget:strongSelf.eventMap[@(controlEvents)] action:@selector(didSelect:) forControlEvents:controlEvents];
-        return strongSelf;
+        [self.textField addTarget:self.eventMap[@(controlEvents)] action:@selector(didSelect:) forControlEvents:controlEvents];
+        return self;
     };
 }
 
 
 - (OCUITextFiled *(^)(NSTextAlignment textAlignment))textAlignment {
-    @WeakSelf(self);
     return ^OCUITextFiled *(NSTextAlignment textAlignment) {
-        @StrongSelf(weakSelf);
-        [strongSelf _makeDelegate];
-        strongSelf.textField.textAlignment = textAlignment;
-        return strongSelf;
+        [self _makeDelegate];
+        self.textField.textAlignment = textAlignment;
+        return self;
     };
 }
 
@@ -148,101 +124,83 @@
 }
 
 - (OCUITextFiled *(^)(BOOL(^)(UITextField *textFiled)))textFieldShouldBeginEditing {
-    @WeakSelf(self);
     return ^OCUITextFiled *(BOOL (^pFunction)(UITextField *)) {
-        @StrongSelf(weakSelf);
-        [strongSelf _makeDelegate];
+        [self _makeDelegate];
         NSString *key = NSStringFromSelector(@selector(textFieldShouldBeginEditing));
-        strongSelf.delegateBlockMap[key] = pFunction;
-        return strongSelf;
+        self.delegateBlockMap[key] = pFunction;
+        return self;
     };
 }
 
 - (OCUITextFiled *(^)(void (^)(UITextField *textFiled)))textFieldDidBeginEditing {
-    @WeakSelf(self);
     return ^OCUITextFiled *(void (^pFunction)(UITextField *)) {
-        @StrongSelf(weakSelf);
-        [strongSelf _makeDelegate];
+        [self _makeDelegate];
         NSString *key = NSStringFromSelector(@selector(textFieldDidBeginEditing));
-        strongSelf.delegateBlockMap[key] = pFunction;
-        return strongSelf;
+        self.delegateBlockMap[key] = pFunction;
+        return self;
     };
 }
 
 - (OCUITextFiled *(^)(BOOL (^)(UITextField *textFiled)))textFieldShouldEndEditing {
-    @WeakSelf(self);
     return ^OCUITextFiled *(BOOL (^pFunction)(UITextField *)) {
-        @StrongSelf(weakSelf);
-        [strongSelf _makeDelegate];
+        [self _makeDelegate];
         NSString *key = NSStringFromSelector(@selector(textFieldShouldEndEditing));
-        strongSelf.delegateBlockMap[key] = pFunction;
-        return strongSelf;
+        self.delegateBlockMap[key] = pFunction;
+        return self;
     };
 }
 
 - (OCUITextFiled *(^)(void (^)(UITextField *textFiled)))textFieldDidEndEditing {
-    @WeakSelf(self);
     return ^OCUITextFiled *(void (^pFunction)(UITextField *)) {
-        @StrongSelf(weakSelf);
-        [strongSelf _makeDelegate];
+        [self _makeDelegate];
         NSString *key = NSStringFromSelector(@selector(textFieldDidEndEditing));
-        strongSelf.delegateBlockMap[key] = pFunction;
-        return strongSelf;
+        self.delegateBlockMap[key] = pFunction;
+        return self;
     };
 }
 
 - (OCUITextFiled *(^)(void (^)(UITextField *textFiled, UITextFieldDidEndEditingReason reason)))textFieldDidEndEditingReason {
-    @WeakSelf(self);
     return ^OCUITextFiled *(void (^pFunction)(UITextField *, UITextFieldDidEndEditingReason)) {
-        @StrongSelf(weakSelf);
-        [strongSelf _makeDelegate];
+        [self _makeDelegate];
         NSString *key = NSStringFromSelector(@selector(textFieldDidEndEditingReason));
-        strongSelf.delegateBlockMap[key] = pFunction;
-        return strongSelf;
+        self.delegateBlockMap[key] = pFunction;
+        return self;
     };
 }
 
 - (OCUITextFiled *(^)(BOOL (^)(UITextField *textFiled, NSRange range, NSString *replace)))shouldChangeCharactersInRangeReplacementString {
-    @WeakSelf(self);
     return ^OCUITextFiled *(BOOL (^pFunction)(UITextField *, NSRange, NSString *)) {
-        @StrongSelf(weakSelf);
-        [strongSelf _makeDelegate];
+        [self _makeDelegate];
         NSString *key = NSStringFromSelector(@selector(shouldChangeCharactersInRangeReplacementString));
-        strongSelf.delegateBlockMap[key] = pFunction;
-        return strongSelf;
+        self.delegateBlockMap[key] = pFunction;
+        return self;
     };
 }
 
 - (OCUITextFiled *(^)(BOOL (^)(UITextField *textFiled)))textFieldDidChangeSelection {
-    @WeakSelf(self);
     return ^OCUITextFiled *(BOOL (^pFunction)(UITextField *)) {
-        @StrongSelf(weakSelf);
-        [strongSelf _makeDelegate];
+        [self _makeDelegate];
         NSString *key = NSStringFromSelector(@selector(shouldChangeCharactersInRangeReplacementString));
-        strongSelf.delegateBlockMap[key] = pFunction;
-        return strongSelf;
+        self.delegateBlockMap[key] = pFunction;
+        return self;
     };
 }
 
 - (OCUITextFiled *(^)(BOOL (^)(UITextField *textFiled)))textFieldShouldClear {
-    @WeakSelf(self);
     return ^OCUITextFiled *(BOOL (^pFunction)(UITextField *)) {
-        @StrongSelf(weakSelf);
         NSString *key = NSStringFromSelector(@selector(textFieldShouldClear));
-        strongSelf.delegateBlockMap[key] = pFunction;
-        [strongSelf _makeDelegate];
-        return strongSelf;
+        self.delegateBlockMap[key] = pFunction;
+        [self _makeDelegate];
+        return self;
     };
 }
 
 - (OCUITextFiled *(^)(BOOL (^)(UITextField *textFiled)))textFieldShouldReturn {
-    @WeakSelf(self);
     return ^OCUITextFiled *(BOOL (^pFunction)(UITextField *)) {
-        @StrongSelf(weakSelf);
-        [strongSelf _makeDelegate];
+        [self _makeDelegate];
         NSString *key = NSStringFromSelector(@selector(textFieldShouldClear));
-        strongSelf.delegateBlockMap[key] = pFunction;
-        return strongSelf;
+        self.delegateBlockMap[key] = pFunction;
+        return self;
     };
 }
 
