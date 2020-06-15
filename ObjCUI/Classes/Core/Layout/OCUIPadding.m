@@ -2,19 +2,13 @@
 // Created by freedom on 2020/6/11.
 //
 
+#import <Masonry/Masonry-umbrella.h>
 #import "OCUIPadding.h"
-#import "OCUIDefine.h"
-#import "View+MASAdditions.h"
 
 
 @interface OCUIPadding ()
 
-@property(nonatomic, assign) double leftData;
-@property(nonatomic, assign) double rightData;
-@property(nonatomic, assign) double topData;
-@property(nonatomic, assign) double bottomData;
-
-@property(nonatomic, strong) OCUIContainer *childViewData;
+@property(nonatomic, strong) NSMutableDictionary <NSNumber *, NSNumber *> *paddingLayoutMap;
 
 @end
 
@@ -28,15 +22,14 @@
     };
 }
 
-- (OCUIPadding *(^)(UIEdgeInsets edgeInsets)edgeInsets {
+- (OCUIPadding *(^)(UIEdgeInsets edgeInsets))edgeInsets {
     @WeakSelf(self);
     return ^OCUIPadding *(UIEdgeInsets edgeInsets) {
         @StrongSelf(weakSelf);
-        strongSelf.leftData = edgeInsets.left;
-        strongSelf.rightData = edgeInsets.right;
-        strongSelf.topData = edgeInsets.top;
-        strongSelf.bottomData = edgeInsets.bottom;
-        [strongSelf masData:YES];
+        [strongSelf _makeDataWithType:OCUILayoutLeftType constraint:edgeInsets.left];
+        [strongSelf _makeDataWithType:OCUILayoutRightType constraint:edgeInsets.right];
+        [strongSelf _makeDataWithType:OCUILayoutTopType constraint:edgeInsets.top];
+        [strongSelf _makeDataWithType:OCUILayoutBottomType constraint:edgeInsets.bottom];
         return strongSelf;
     };
 }
@@ -45,8 +38,7 @@
     @WeakSelf(self);
     return ^OCUIPadding *(double left) {
         @StrongSelf(weakSelf);
-        strongSelf.leftData = left;
-        [strongSelf masData:YES];
+        [strongSelf _makeDataWithType:OCUILayoutLeftType constraint:left];
         return strongSelf;
     };
 }
@@ -55,8 +47,7 @@
     @WeakSelf(self);
     return ^OCUIPadding *(double right) {
         @StrongSelf(weakSelf);
-        strongSelf.rightData = right;
-        [strongSelf masData:YES];
+        [strongSelf _makeDataWithType:OCUILayoutRightType constraint:right];
         return strongSelf;
     };
 }
@@ -65,9 +56,8 @@
     @WeakSelf(self);
     return ^OCUIPadding *(double top) {
         @StrongSelf(weakSelf);
-        strongSelf.topData = top;
-        [strongSelf masData:YES];
-        return nil;
+        [strongSelf _makeDataWithType:OCUILayoutTopType constraint:top];
+        return strongSelf;
     };
 }
 
@@ -75,41 +65,85 @@
     @WeakSelf(self);
     return ^OCUIPadding *(double bottom) {
         @StrongSelf(weakSelf);
-        strongSelf.bottomData = bottom;
-        [strongSelf masData:YES];
+        [strongSelf _makeDataWithType:OCUILayoutBottomType constraint:bottom];
         return strongSelf;
     };
 }
 
-- (id *(^)(OCUIContainer *childView))childView {
-    @WeakSelf(self);
-    return ^OCUIPadding *(OCUIContainer *childView) {
-        @StrongSelf(weakSelf)
-        strongSelf.childViewData = childView;
-        [strongSelf masData:NO];
-        return strongSelf;
-    };
-}
+//- (void)makeConstraints {
+//    if (!self.bindView.superview) {
+//        return;
+//    }
+//    [self.bindView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        NSNumber *leftNum = self.paddingLayoutMap[@(OCUILayoutLeftType)];
+//        NSNumber *rightNum = self.paddingLayoutMap[@(OCUILayoutRightType)];
+//        NSNumber *topNum = self.paddingLayoutMap[@(OCUILayoutTopType)];
+//        NSNumber *bottom = self.paddingLayoutMap[@(OCUILayoutBottomType)];
+//
+//        if (leftNum) {
+//            make.left.mas_equalTo([leftNum doubleValue]);
+//        }
+//        if (rightNum) {
+//            make.right.mas_equalTo([rightNum doubleValue]);
+//        }
+//        if (topNum) {
+//            make.top.mas_equalTo([topNum doubleValue]);
+//        }
+//        if (bottom) {
+//            make.bottom.mas_equalTo([bottom doubleValue]);
+//        }
+//    }];
+//}
 
-- (void)masData:(BOOL)update {
-    if (!self.childViewData.bindView.superview) {
-        return;
-    }
-    id data = ^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.leftData);
-        make.right.mas_equalTo(self.rightData);
-        make.top.mas_equalTo(self.topData);
-        make.bottom.mas_equalTo(self.bottomData);
-    };
-    if (update) {
-        [self.childViewData.bindView mas_updateConstraints:data];
+#pragma mark - Tool
+
+- (void)_makeDataWithType:(OCUILayoutType)type constraint:(double)constraint {
+    NSNumber *number = self.paddingLayoutMap[@(type)];
+    if (!number) {
+        self.paddingLayoutMap[@(type)] = @(constraint);
     } else {
-        [self.childViewData.bindView mas_makeConstraints:data];
+        self.paddingLayoutMap[@(type)] = @([number doubleValue] + constraint);
     }
 }
 
-- (UIView *)bindView {
-    return self.childViewData.bindView.superview;
+
+#pragma mark - Set
+
+//- (void)setLayoutMap:(NSDictionary<NSNumber *, NSNumber *> *)layoutMap {
+//    if (layoutMap == nil) {
+//        return;
+//    }
+//    NSSet *set = [[NSSet alloc] initWithObjects:@(OCUILayoutLeftType), @(OCUILayoutRightType), @(OCUILayoutTopType), @(OCUILayoutBottomType), nil];
+//    @WeakSelf(self);
+//    [layoutMap enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSNumber *obj, BOOL *stop) {
+//        @StrongSelf(weakSelf);
+//        if ([set containsObject:key]) {
+//            OCUILayoutType layoutType = (OCUILayoutType) [key integerValue];
+//            if (layoutMap[key]) {
+//                double constraint = [obj doubleValue];
+//                [strongSelf _makeDataWithType:layoutType constraint:constraint];
+//            } else {
+//                strongSelf.paddingLayoutMap[key] = obj;
+//            }
+//        }
+//    }];
+//}
+
+- (NSDictionary<NSNumber *, NSNumber *> *)layoutMap {
+    return [self.paddingLayoutMap copy];
+}
+
+#pragma mark - Get
+
+- (NSMutableDictionary<NSNumber *, NSNumber *> *)paddingLayoutMap {
+    if (!_paddingLayoutMap) {
+        _paddingLayoutMap = [NSMutableDictionary dictionary];
+    }
+    return _paddingLayoutMap;
+}
+
+- (OCUIContainerType)containerType {
+    return OCUIContainerLayoutType;
 }
 
 @end

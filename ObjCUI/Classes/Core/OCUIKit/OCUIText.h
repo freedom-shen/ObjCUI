@@ -22,7 +22,7 @@
 
 - (OCUIText *(^)(int))numberOfLines;;
 
-- (OCUIText *(^)(OCUITextMaker maker))labelMaker;
+- (OCUIText *(^)(void(^)(UILabel *label)))maker;
 
 #pragma mark - Rewrite
 
@@ -32,5 +32,4 @@
 
 - (OCUIText *(^)(double height))height;
 
-- (OCUIText *(^)(OCUIContainer *childView))ocuiView;
 @end

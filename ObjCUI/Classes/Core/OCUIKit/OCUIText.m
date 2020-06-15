@@ -18,7 +18,7 @@
 #pragma mark  - Create
 
 + (OCUIText *(^)())create {
-    return ^OCUIText *(NSString *string) {
+    return ^OCUIText *() {
         OCUIText *ocuiText = [[OCUIText alloc] init];
         ocuiText.label = [[UILabel alloc] init];
         return ocuiText;
@@ -70,22 +70,24 @@
     };
 }
 
-- (OCUIText *(^)(OCUITextMaker maker))labelMaker {
+- (OCUIText *(^)(void(^)(UILabel *label)))maker {
     @WeakSelf(self);
-    return ^OCUIText *(OCUITextMaker maker) {
+    return ^OCUIText *(void (^pFunction)(UILabel *)) {
         @StrongSelf(weakSelf);
-        if (maker) {
-            maker(strongSelf.label);
+        if (pFunction) {
+            pFunction(strongSelf.label);
         }
         return strongSelf;
     };
 }
 
-
 #pragma mark - Get
 
 - (UILabel *)bindView {
-    return self.label;
+    if (!_label) {
+        _label = [[UILabel alloc] init];
+    }
+    return _label;
 }
 
 @end

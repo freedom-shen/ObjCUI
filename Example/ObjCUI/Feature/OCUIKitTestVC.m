@@ -5,8 +5,10 @@
 
 #import <ObjCUI/OCUIText.h>
 #import <ObjCUI/OCUIPadding.h>
+#import <ObjCUI/UIView+Convert.h>
 #import "OCUIKitTestVC.h"
-
+#import "View+MASAdditions.h"
+#import <ObjCUI/OCUITextFiled.h>
 
 @interface OCUIKitTestVC ()
 
@@ -16,31 +18,46 @@
 
 @implementation OCUIKitTestVC
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.ocuiText.bindView.frame = CGRectMake(100, 100, 100, 100);
-    [self.view addSubview:self.ocuiText.bindView];
-    UILabel *label = [[UILabel alloc] init];
-    OCUIPadding.create().left(200).top(200).childView(
-            self.ocuiText
-            );
+- (void)dealloc {
+    NSLog(@"OCUIKitTestVC is Safe");
 }
 
-#pragma mark - Get
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
 
-- (OCUIText *)ocuiText {
-    if (!_ocuiText) {
-        _ocuiText = OCUIText.create()
-                .text(@"我是个测试数据\n测试下号")
-                .font([UIFont systemFontOfSize:12])
-                .textAlignment(NSTextAlignmentLeft)
-                .textColor([UIColor redColor])
-                .labelMaker(^(UILabel *label) {
-                    label.numberOfLines = 2;
-                })
-            .backgroundColor([UIColor blueColor]);
-    }
-    return _ocuiText;
+    self.view.convertToOCUIContainer.childView(
+            OCUIPadding.create().left(200).top(100).childView(
+                    OCUIText.create()
+                            .text(@"我是个测试数据")
+                            .font([UIFont systemFontOfSize:12])
+                            .textAlignment(NSTextAlignmentCenter)
+                            .textColor([UIColor redColor])
+                            .maker(^(UILabel *label) {
+                                label.numberOfLines = 2;
+                            })
+                            .backgroundColor([UIColor blueColor])
+//                            .width(200)
+//                            .height(200)
+            )
+    );
+
+    self.view.convertToOCUIContainer.childView(
+            OCUIPadding.create().left(200).top(200).childView(
+                    OCUITextFiled.create()
+                            .placeHolder(@"我是一个测试")
+                            .action(UIControlEventEditingChanged, ^(UITextField *textField) {
+                                NSLog(@"%@", textField.text);
+                            })
+                    .textFieldShouldBeginEditing(^BOOL(UITextField *textField) {
+                        return NO;
+                    })
+            )
+    );
+}
+
+- (void)didSelect:(UITextField *)sender {
+    NSLog(@"%@", sender.text);
 }
 
 

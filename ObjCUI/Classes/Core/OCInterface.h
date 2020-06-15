@@ -3,6 +3,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OCUIDefine.h"
 
 @class OCUIContainer;
 @class MASConstraintMaker;
@@ -10,11 +11,19 @@
 @protocol OCInterface <NSObject>
 
 
-+ (id *(^)())create;
+@required
++ (id (^)())create;
 
-- (id *(^)(OCUIContainer *childView))childView;
+@optional
 
-@property(nonatomic, strong) MASConstraintMaker *constraintMaker;
+- (id (^)(OCUIContainer *childView))childView;
+
+//@property(nonatomic, weak) OCUIBuildContextInfo *contextInfo;
+
+@property(nonatomic, strong, readonly) NSDictionary <NSNumber *, NSNumber *> *layoutMap;
+
+- (void)makeConstraints;
+
 
 @end
 
@@ -28,5 +37,7 @@
 - (OCUIContainer *(^)(double width))width;
 
 - (OCUIContainer *(^)(double height))height;
+
+- (OCUIContainerType)containerType;
 
 @end
