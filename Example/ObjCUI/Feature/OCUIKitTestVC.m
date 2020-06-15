@@ -7,8 +7,8 @@
 #import <ObjCUI/OCUIPadding.h>
 #import <ObjCUI/UIView+Convert.h>
 #import "OCUIKitTestVC.h"
-#import "View+MASAdditions.h"
 #import <ObjCUI/OCUITextFiled.h>
+#import <ObjCUI/OCUITextView.h>
 
 @interface OCUIKitTestVC ()
 
@@ -37,21 +37,32 @@
                                 label.numberOfLines = 2;
                             })
                             .backgroundColor([UIColor blueColor])
-//                            .width(200)
-//                            .height(200)
             )
     );
 
     self.view.convertToOCUIContainer.childView(
-            OCUIPadding.create().left(200).top(200).childView(
+            OCUIPadding.create().left(200).top(150).childView(
                     OCUITextFiled.create()
                             .placeHolder(@"我是一个测试")
                             .action(UIControlEventEditingChanged, ^(UITextField *textField) {
                                 NSLog(@"%@", textField.text);
                             })
-                    .textFieldShouldBeginEditing(^BOOL(UITextField *textField) {
-                        return NO;
-                    })
+                            .textFieldShouldBeginEditing(^BOOL(UITextField *textField) {
+                                return NO;
+                            })
+            )
+    );
+
+    self.view.convertToOCUIContainer.childView(
+            OCUIPadding.create().left(200).top(200).childView(
+                    OCUITextView.create()
+                            .text(@"我来试一下")
+                            .textViewDidChange(^(UITextView *textView){
+                                NSLog(@"text did change:%@", textView.text);
+                            })
+                            .width(200)
+                            .height(100)
+                            .backgroundColor([UIColor blueColor])
             )
     );
 }

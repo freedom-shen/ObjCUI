@@ -128,13 +128,32 @@
     };
 }
 
+
+- (OCUITextFiled *(^)(NSTextAlignment textAlignment))textAlignment {
+    @WeakSelf(self);
+    return ^OCUITextFiled *(NSTextAlignment textAlignment) {
+        @StrongSelf(weakSelf);
+        [strongSelf _makeDelegate];
+        strongSelf.textField.textAlignment = textAlignment;
+        return strongSelf;
+    };
+}
+
 #pragma mark - Delegate Block
+
+- (void)_makeDelegate {
+    if (!self.textField.delegate) {
+        self.textField.delegate = self;
+    }
+}
 
 - (OCUITextFiled *(^)(BOOL(^)(UITextField *textFiled)))textFieldShouldBeginEditing {
     @WeakSelf(self);
     return ^OCUITextFiled *(BOOL (^pFunction)(UITextField *)) {
         @StrongSelf(weakSelf);
-        strongSelf.delegateBlockMap[@"textFieldShouldBeginEditing"] = pFunction;
+        [strongSelf _makeDelegate];
+        NSString *key = NSStringFromSelector(@selector(textFieldShouldBeginEditing));
+        strongSelf.delegateBlockMap[key] = pFunction;
         return strongSelf;
     };
 }
@@ -143,7 +162,9 @@
     @WeakSelf(self);
     return ^OCUITextFiled *(void (^pFunction)(UITextField *)) {
         @StrongSelf(weakSelf);
-        strongSelf.delegateBlockMap[@"textFieldDidBeginEditing"] = pFunction;
+        [strongSelf _makeDelegate];
+        NSString *key = NSStringFromSelector(@selector(textFieldDidBeginEditing));
+        strongSelf.delegateBlockMap[key] = pFunction;
         return strongSelf;
     };
 }
@@ -152,7 +173,9 @@
     @WeakSelf(self);
     return ^OCUITextFiled *(BOOL (^pFunction)(UITextField *)) {
         @StrongSelf(weakSelf);
-        strongSelf.delegateBlockMap[@"textFieldShouldEndEditing"] = pFunction;
+        [strongSelf _makeDelegate];
+        NSString *key = NSStringFromSelector(@selector(textFieldShouldEndEditing));
+        strongSelf.delegateBlockMap[key] = pFunction;
         return strongSelf;
     };
 }
@@ -161,7 +184,9 @@
     @WeakSelf(self);
     return ^OCUITextFiled *(void (^pFunction)(UITextField *)) {
         @StrongSelf(weakSelf);
-        strongSelf.delegateBlockMap[@"textFieldDidEndEditing"] = pFunction;
+        [strongSelf _makeDelegate];
+        NSString *key = NSStringFromSelector(@selector(textFieldDidEndEditing));
+        strongSelf.delegateBlockMap[key] = pFunction;
         return strongSelf;
     };
 }
@@ -170,7 +195,9 @@
     @WeakSelf(self);
     return ^OCUITextFiled *(void (^pFunction)(UITextField *, UITextFieldDidEndEditingReason)) {
         @StrongSelf(weakSelf);
-        strongSelf.delegateBlockMap[@"textFieldDidEndEditingReason"] = pFunction;
+        [strongSelf _makeDelegate];
+        NSString *key = NSStringFromSelector(@selector(textFieldDidEndEditingReason));
+        strongSelf.delegateBlockMap[key] = pFunction;
         return strongSelf;
     };
 }
@@ -179,7 +206,9 @@
     @WeakSelf(self);
     return ^OCUITextFiled *(BOOL (^pFunction)(UITextField *, NSRange, NSString *)) {
         @StrongSelf(weakSelf);
-        strongSelf.delegateBlockMap[@"shouldChangeCharactersInRangeReplacementString"] = pFunction;
+        [strongSelf _makeDelegate];
+        NSString *key = NSStringFromSelector(@selector(shouldChangeCharactersInRangeReplacementString));
+        strongSelf.delegateBlockMap[key] = pFunction;
         return strongSelf;
     };
 }
@@ -188,7 +217,9 @@
     @WeakSelf(self);
     return ^OCUITextFiled *(BOOL (^pFunction)(UITextField *)) {
         @StrongSelf(weakSelf);
-        strongSelf.delegateBlockMap[@"textFieldDidChangeSelection"] = pFunction;
+        [strongSelf _makeDelegate];
+        NSString *key = NSStringFromSelector(@selector(shouldChangeCharactersInRangeReplacementString));
+        strongSelf.delegateBlockMap[key] = pFunction;
         return strongSelf;
     };
 }
@@ -197,7 +228,9 @@
     @WeakSelf(self);
     return ^OCUITextFiled *(BOOL (^pFunction)(UITextField *)) {
         @StrongSelf(weakSelf);
-        strongSelf.delegateBlockMap[@"textFieldShouldClear"] = pFunction;
+        NSString *key = NSStringFromSelector(@selector(textFieldShouldClear));
+        strongSelf.delegateBlockMap[key] = pFunction;
+        [strongSelf _makeDelegate];
         return strongSelf;
     };
 }
@@ -206,17 +239,9 @@
     @WeakSelf(self);
     return ^OCUITextFiled *(BOOL (^pFunction)(UITextField *)) {
         @StrongSelf(weakSelf);
-        strongSelf.delegateBlockMap[@"textFieldShouldReturn"] = pFunction;
-        return strongSelf;
-    };
-}
-
-
-- (OCUITextFiled *(^)(NSTextAlignment textAlignment))textAlignment {
-    @WeakSelf(self);
-    return ^OCUITextFiled *(NSTextAlignment textAlignment) {
-        @StrongSelf(weakSelf);
-        strongSelf.textField.textAlignment = textAlignment;
+        [strongSelf _makeDelegate];
+        NSString *key = NSStringFromSelector(@selector(textFieldShouldClear));
+        strongSelf.delegateBlockMap[key] = pFunction;
         return strongSelf;
     };
 }
@@ -225,7 +250,8 @@
 #pragma mark - Delegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    BOOL (^block)(UITextField *textFiled) = self.delegateBlockMap[@"textFieldShouldBeginEditing"];
+    NSString *key = NSStringFromSelector(@selector(textFieldShouldBeginEditing));
+    BOOL (^block)(UITextField *textFiled) = self.delegateBlockMap[key];
     if (block) {
         return block(textField);
     }
@@ -233,14 +259,16 @@
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    void (^block)(UITextField *textFiled) = self.delegateBlockMap[@"textFieldDidBeginEditing"];
+    NSString *key = NSStringFromSelector(@selector(textFieldDidBeginEditing));
+    void (^block)(UITextField *textFiled) = self.delegateBlockMap[key];
     if (block) {
         block(textField);
     }
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-    BOOL (^block)(UITextField *textFiled) = self.delegateBlockMap[@"textFieldShouldEndEditing"];
+    NSString *key = NSStringFromSelector(@selector(textFieldShouldEndEditing));
+    BOOL (^block)(UITextField *textFiled) = self.delegateBlockMap[key];
     if (block) {
         return block(textField);
     }
@@ -248,21 +276,24 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    void (^block)(UITextField *textFiled) = self.delegateBlockMap[@"textFieldDidEndEditing"];
+    NSString *key = NSStringFromSelector(@selector(textFieldDidEndEditing));
+    void (^block)(UITextField *textFiled) = self.delegateBlockMap[key];
     if (block) {
         block(textField);
     }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField reason:(UITextFieldDidEndEditingReason)reason API_AVAILABLE(ios(10.0)) {
-    void (^block)(UITextField *textFiled, UITextFieldDidEndEditingReason reason) = self.delegateBlockMap[@"textFieldDidEndEditingReason"];
+    NSString *key = NSStringFromSelector(@selector(textFieldDidEndEditingReason));
+    void (^block)(UITextField *textFiled, UITextFieldDidEndEditingReason reason) = self.delegateBlockMap[key];
     if (block) {
         block(textField, reason);
     }
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    BOOL (^block)(UITextField *textFiled, NSRange range, NSString *string) = self.delegateBlockMap[@"shouldChangeCharactersInRangeReplacementString"];
+    NSString *key = NSStringFromSelector(@selector(shouldChangeCharactersInRangeReplacementString));
+    BOOL (^block)(UITextField *textFiled, NSRange range, NSString *string) = self.delegateBlockMap[key];
     if (block) {
         return block(textField, range, string);
     }
@@ -270,14 +301,16 @@
 }
 
 - (void)textFieldDidChangeSelection:(UITextField *)textField API_AVAILABLE(ios(13.0), tvos(13.0)) {
-    void (^block)(UITextField *textFiled) = self.delegateBlockMap[@"textFieldDidChangeSelection"];
+    NSString *key = NSStringFromSelector(@selector(textFieldDidChangeSelection));
+    void (^block)(UITextField *textFiled) = self.delegateBlockMap[key];
     if (block) {
         block(textField);
     }
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField {
-    BOOL (^block)(UITextField *textFiled) = self.delegateBlockMap[@"textFieldShouldClear"];
+    NSString *key = NSStringFromSelector(@selector(textFieldShouldClear));
+    BOOL (^block)(UITextField *textFiled) = self.delegateBlockMap[key];
     if (block) {
         return block(textField);
     }
@@ -285,13 +318,13 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    BOOL (^block)(UITextField *textFiled) = self.delegateBlockMap[@"textFieldShouldReturn"];
+    NSString *key = NSStringFromSelector(@selector(textFieldShouldReturn));
+    BOOL (^block)(UITextField *textFiled) = self.delegateBlockMap[key];
     if (block) {
         return block(textField);
     }
     return YES;
 }
-
 
 #pragma mark - Get
 
@@ -302,7 +335,6 @@
 - (UITextField *)textField {
     if (!_textField) {
         _textField = [[UITextField alloc] init];
-        _textField.delegate = self;
     }
     return _textField;
 }
