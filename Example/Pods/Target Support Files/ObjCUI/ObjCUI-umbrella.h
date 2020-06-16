@@ -16,6 +16,7 @@
 #import "OCUIDefine.h"
 #import "OCUIButton.h"
 #import "OCUIContainer.h"
+#import "OCUIImage.h"
 #import "OCUIText.h"
 #import "OCUITextFiled.h"
 #import "OCUITextView.h"

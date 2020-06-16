@@ -10,6 +10,7 @@
 #import <ObjCUI/OCUITextFiled.h>
 #import <ObjCUI/OCUITextView.h>
 #import <ObjCUI/OCUIButton.h>
+#import <ObjCUI/OCUIImage.h>
 
 @interface OCUIKitTestVC ()
 
@@ -74,6 +75,13 @@
                             .backgroundColor([UIColor redColor])
             )
     );
+
+    self.view.convertToOCUIContainer.childView(
+            OCUIPadding.create().left(0).top(350).right(0).childView(
+                    OCUIImage.create().image([UIImage imageNamed:@"email"])
+            )
+    );
+
 }
 
 - (void)didSelect:(UITextField *)sender {
