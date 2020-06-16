@@ -9,6 +9,7 @@
 #import "OCUIKitTestVC.h"
 #import <ObjCUI/OCUITextFiled.h>
 #import <ObjCUI/OCUITextView.h>
+#import <ObjCUI/OCUIButton.h>
 
 @interface OCUIKitTestVC ()
 
@@ -57,12 +58,20 @@
             OCUIPadding.create().left(200).top(200).childView(
                     OCUITextView.create()
                             .text(@"我来试一下")
-                            .textViewDidChange(^(UITextView *textView){
+                            .textViewDidChange(^(UITextView *textView) {
                                 NSLog(@"text did change:%@", textView.text);
                             })
                             .width(200)
                             .height(100)
                             .backgroundColor([UIColor blueColor])
+            )
+    );
+
+    self.view.convertToOCUIContainer.childView(
+            OCUIPadding.create().left(200).top(300).childView(
+                    OCUIButton.create()
+                            .title(UIControlStateNormal, @"我是一个测试按钮")
+                            .backgroundColor([UIColor redColor])
             )
     );
 }

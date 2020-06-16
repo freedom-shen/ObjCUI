@@ -13,7 +13,7 @@
 
 @implementation OCUIText
 
-@synthesize bindView = _bindView;
+
 
 #pragma mark  - Create
 

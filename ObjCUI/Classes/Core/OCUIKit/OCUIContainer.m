@@ -17,6 +17,14 @@
 
 @implementation OCUIContainer
 
+#ifdef DEBUG
+
+- (void)dealloc {
+    NSLog(@"%@ is safe", NSStringFromClass([self class]));
+}
+
+#endif
+
 - (instancetype)initWithCustomer:(UIView *)customerView {
     self = [super init];
     if (self) {
@@ -129,17 +137,21 @@
                 case OCUILayoutTopType:
                 case OCUILayoutBottomType: {
                     dictionary[key] = @([dictionary[key] doubleValue] + [obj doubleValue]);
-                } break;
+                }
+                    break;
                 case OCUILayoutCenterXType: {
 
-                } break;
+                }
+                    break;
                 case OCUILayoutCenterYType: {
 
-                } break;
+                }
+                    break;
                 case OCUILayoutWidthType:
                 case OCUILayoutHeightType: {
                     dictionary[key] = obj;
-                } break;
+                }
+                    break;
             }
         }];
         container = container.superContainer;
