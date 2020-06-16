@@ -11,6 +11,7 @@
 #import <ObjCUI/OCUITextView.h>
 #import <ObjCUI/OCUIButton.h>
 #import <ObjCUI/OCUIImage.h>
+#import <View+MASAdditions.h>
 
 @interface OCUIKitTestVC ()
 
@@ -73,6 +74,9 @@
                     OCUIButton.create()
                             .title(UIControlStateNormal, @"我是一个测试按钮")
                             .backgroundColor([UIColor redColor])
+                    .action(UIControlEventTouchUpInside,^(UIButton *sender){
+                        NSLog(@"按钮被点击了");
+                    })
             )
     );
 
@@ -82,11 +86,19 @@
             )
     );
 
+    UIButton *button = [[UIButton alloc] init];
+    button.backgroundColor = [UIColor blackColor];
+    [self.view addSubview:button];
+    [button addTarget:self action:@selector(doit:) forControlEvents:UIControlEventTouchUpInside];
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(88);
+        make.left.mas_equalTo(0);
+        make.width.height.mas_equalTo(100);
+    }];
 }
 
-- (void)didSelect:(UITextField *)sender {
-    NSLog(@"%@", sender.text);
+- (void)doit:(UIButton *)sender {
+    NSLog(@"doit111");
 }
-
 
 @end

@@ -16,9 +16,11 @@
 @implementation OCUIButton
 
 - (OCUIButton *(^)(UIControlState state, NSString *title))title {
+    @WeakSelf(self);
     return ^OCUIButton *(UIControlState state, NSString *title) {
-        [self.button setTitle:title forState:state];
-        return self;
+        @StrongSelf(weakSelf);
+        [strongSelf.button setTitle:title forState:state];
+        return strongSelf;
     };
 }
 
@@ -65,15 +67,16 @@
 }
 
 - (OCUIButton *(^)(UIControlEvents controlEvents, void(^)(UIButton *button)))action {
+    @WeakSelf(self);
     return ^OCUIButton *(UIControlEvents controlEvents, void (^pFunction)(UIButton *)) {
-        if (!self.eventMap[@(controlEvents)]) {
-            self.eventMap[@(controlEvents)] = [[OCUIControllerWrapper alloc] initWithHandler:pFunction];
+        @StrongSelf(weakSelf);
+        if (!strongSelf.eventMap[@(controlEvents)]) {
+            strongSelf.eventMap[@(controlEvents)] = [[OCUIControllerWrapper alloc] initWithHandler:pFunction];
         }
-        [self.button addTarget:self.eventMap[@(controlEvents)] action:@selector(didSelect:) forControlEvents:controlEvents];
-        return self;
+        [strongSelf.button addTarget:strongSelf.eventMap[@(controlEvents)] action:@selector(didSelect:) forControlEvents:controlEvents];
+        return strongSelf;
     };
 }
-
 
 - (OCUIButton *(^)(UIColor *tintColor))tintColor {
     return ^OCUIButton *(UIColor *tintColor) {
@@ -153,6 +156,7 @@
 }
 
 #pragma mark - Get
+
 
 - (UIButton *)button {
     if (!_button) {
