@@ -21,6 +21,84 @@
     };
 }
 
+- (UILabel *(^)(UIColor *))objc_shadowColor {
+    return ^UILabel *(UIColor *color) {
+        self.shadowColor = color;
+        return self;
+    };
+}
+
+- (UILabel *(^)(CGSize))objc_shadowOffset {
+    return ^UILabel *(CGSize size) {
+        self.shadowOffset = size;
+        return self;
+    };
+}
+
+- (UILabel *(^)(NSLineBreakMode))objc_lineBreakMode {
+    return ^UILabel *(NSLineBreakMode mode) {
+        self.lineBreakMode = mode;
+        return self;
+    };
+}
+
+- (UILabel *(^)(NSAttributedString *))objc_attributedText {
+    return ^UILabel *(NSAttributedString *string) {
+        self.attributedText = string;
+        return self;
+    };
+}
+
+- (UILabel *(^)(UIColor *))objc_highlightedTextColor {
+    return ^UILabel *(UIColor *color) {
+        self.highlightedTextColor = color;
+        return self;
+    };
+}
+
+- (UILabel *(^)(BOOL))objc_highlighted {
+    return ^UILabel *(BOOL i) {
+        self.highlighted = i;
+        return self;
+    };
+}
+
+- (UILabel *(^)(BOOL))objc_enabled {
+    return ^UILabel *(BOOL i) {
+        self.enabled = i;
+        return self;
+    };
+}
+
+- (UILabel *(^)(BOOL))objc_adjustsFontSizeToFitWidth {
+    return ^UILabel *(BOOL i) {
+        self.adjustsFontSizeToFitWidth = i;
+        return self;
+    };
+}
+
+- (UILabel *(^)(UIBaselineAdjustment))objc_baselineAdjustment {
+    return ^UILabel *(UIBaselineAdjustment adjustment) {
+        self.baselineAdjustment = adjustment;
+        return self;
+    };
+}
+
+- (UILabel *(^)(UIBaselineAdjustment))objc_minimumScaleFactor {
+    return ^UILabel *(UIBaselineAdjustment adjustment) {
+        self.minimumScaleFactor = adjustment;
+        return self;
+    };
+}
+
+- (UILabel *(^)(BOOL))objc_allowsDefaultTighteningForTruncation {
+    return ^UILabel *(BOOL i) {
+        self.allowsDefaultTighteningForTruncation = i;
+        return self;
+    };
+}
+
+
 - (UILabel *(^)(UIColor *))objc_textColor {
     return ^UILabel *(UIColor *color) {
         self.textColor = color;
