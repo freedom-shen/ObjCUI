@@ -4,10 +4,10 @@ platform :ios, '8.0'
 
 target 'ObjCUI_Example' do
   pod 'ObjCUI', :path => '../'
+  pod 'ReactiveObjC'
 
   target 'ObjCUI_Tests' do
     inherit! :search_paths
 
-    
   end
 end

@@ -2,13 +2,16 @@ PODS:
   - Masonry (1.1.0)
   - ObjCUI (0.1.0):
     - Masonry
+  - ReactiveObjC (3.1.1)
 
 DEPENDENCIES:
   - ObjCUI (from `../`)
+  - ReactiveObjC
 
 SPEC REPOS:
   trunk:
     - Masonry
+    - ReactiveObjC
 
 EXTERNAL SOURCES:
   ObjCUI:
@@ -17,7 +20,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   ObjCUI: 4919cf7bb1e9dc3bd5086a0ec08eef9207b68567
+  ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
 
-PODFILE CHECKSUM: e2a2bd230b078fdd0edce936fbe2818be6266676
+PODFILE CHECKSUM: 4bc6d5cf38ccec0fef374e3876598055e7460a2e
 
 COCOAPODS: 1.9.1

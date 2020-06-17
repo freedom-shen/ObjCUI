@@ -134,7 +134,6 @@ static const void *UIButtonObjcUIEventKey = &UIButtonObjcUIEventKey;
     };
 }
 
-
 - (UIButton *(^)(void(^)(UIButton *button)))objc_maker {
     return ^UIButton *(void (^pFunction)(UIButton *)) {
         if (pFunction) {

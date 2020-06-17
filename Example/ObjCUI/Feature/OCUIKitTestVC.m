@@ -7,12 +7,15 @@
 #import <ObjCUI/OCUIPadding.h>
 #import <ObjCUI/UIView+Convert.h>
 #import "OCUIKitTestVC.h"
+#import "NSObject+RACDeallocating.h"
 #import <ObjCUI/OCUITextFiled.h>
 #import <ObjCUI/OCUITextView.h>
 #import <ObjCUI/OCUIButton.h>
 #import <ObjCUI/OCUIImage.h>
+#import <ObjCUI/UILabel+ObjcUI.h>
 #import <ObjCUI/UIButton+ObjcUI.h>
 #import <View+MASAdditions.h>
+#import <ReactiveObjC/RACSignal+Operations.h>
 
 @interface OCUIKitTestVC ()
 
@@ -94,11 +97,32 @@
             .objc_action(UIControlEventTouchUpInside, ^(UIButton *button) {
                 NSLog(@"点击了按钮");
             });
+//    UIButton *button = [[UIButton alloc] init];
     button.backgroundColor = [UIColor redColor];
     [self.view addSubview:button];
+
+
+
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.mas_equalTo(100);
         make.top.mas_equalTo(100);
+    }];
+
+    UILabel *label = UILabel.objc_create()
+            .objc_text(@"我是一个测试label")
+            .objc_maker(^(UILabel *label){
+                label.backgroundColor = [UIColor redColor];
+            });
+    [self.view addSubview:label];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(button);
+        make.top.mas_equalTo(button.mas_bottom).offset(10);
+    }];
+    [[button rac_willDeallocSignal] subscribeCompleted:^() {
+        NSLog(@"button is safe");
+    }];
+    [[label rac_willDeallocSignal] subscribeCompleted:^{
+        NSLog(@"label is safe");
     }];
 }
 

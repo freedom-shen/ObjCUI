@@ -21,6 +21,8 @@
 #import "OCUITextFiled.h"
 #import "OCUITextView.h"
 #import "UIButton+ObjcUI.h"
+#import "UIImageView+ObjcUI.h"
+#import "UILabel+ObjcUI.h"
 #import "UIView+Convert.h"
 #import "OCUIControllerWrapper.h"
 
