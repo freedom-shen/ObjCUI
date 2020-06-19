@@ -229,6 +229,8 @@
 		D84202B886E0ABE8C743A3F6E7FCEFA8 /* RACStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4429DF8BE2EBF0931018FEEFE8E01EAC /* RACStream.m */; };
 		DA2DF4C54D6C21E70E730DF2FE2B2095 /* RACScheduler.h in Headers */ = {isa = PBXBuildFile; fileRef = A986DF3061355DB51DDF1AD84B05FF17 /* RACScheduler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DADBA695D4FAC5EBD674FA04C33C1350 /* RACSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D10892C5E537B03B117B2B5B17507E7 /* RACSequence.m */; };
+		DC02CB2C88AE87FFAC188783 /* UIScrollView+ObjcUI.m in Sources */ = {isa = PBXBuildFile; fileRef = DC02C76B715EC44B97717BC3 /* UIScrollView+ObjcUI.m */; };
+		DC02CCB6B8A560591729F91D /* UIScrollView+ObjcUI.h in Headers */ = {isa = PBXBuildFile; fileRef = DC02C2C518D6759D1D12C7C4 /* UIScrollView+ObjcUI.h */; };
 		DDDDEAA31A9E1F29C248AF42EC54F8B1 /* NSString+RACSequenceAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 20C182F0030CB89E7D6BD11530D6907A /* NSString+RACSequenceAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DE854929D16D576AB531531DD55C6050 /* UIView+Convert.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F621271437E2FBFBD999D0EDCCA6C8 /* UIView+Convert.m */; };
 		DF1672563F4A0450441428E1F8D17747 /* NSString+RACSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 852402B3400D4793307DFF545A71CA58 /* NSString+RACSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -559,6 +561,8 @@
 		D826DF88E8787CB4787B9AE3B07E6446 /* RACGroupedSignal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACGroupedSignal.h; path = ReactiveObjC/RACGroupedSignal.h; sourceTree = "<group>"; };
 		DB8C87C0DCE9584DA0236A0D7CB3142A /* Pods-ObjCUI_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ObjCUI_Example.release.xcconfig"; sourceTree = "<group>"; };
 		DBDA46D8327D6C19477618A52B5A04D2 /* NSObject+RACPropertySubscribing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+RACPropertySubscribing.h"; path = "ReactiveObjC/NSObject+RACPropertySubscribing.h"; sourceTree = "<group>"; };
+		DC02C2C518D6759D1D12C7C4 /* UIScrollView+ObjcUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+ObjcUI.h"; sourceTree = "<group>"; };
+		DC02C76B715EC44B97717BC3 /* UIScrollView+ObjcUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+ObjcUI.m"; sourceTree = "<group>"; };
 		DC9BE892EB81392FF93A8CCB40D3F824 /* Masonry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Masonry.release.xcconfig; sourceTree = "<group>"; };
 		DE8FEB0FAA4AF326063985C450E51BD0 /* RACTupleSequence.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACTupleSequence.m; path = ReactiveObjC/RACTupleSequence.m; sourceTree = "<group>"; };
 		E0349FB55A4BEB817E8331B3147ED3E6 /* MASConstraintMaker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraintMaker.m; path = Masonry/MASConstraintMaker.m; sourceTree = "<group>"; };
@@ -1061,6 +1065,8 @@
 				11EB42AADD34F28E0982C613880E98F8 /* UIView+Convert.h */,
 				B3F621271437E2FBFBD999D0EDCCA6C8 /* UIView+Convert.m */,
 				52945C3D58D108448965A465D2224766 /* wrapper */,
+				DC02C76B715EC44B97717BC3 /* UIScrollView+ObjcUI.m */,
+				DC02C2C518D6759D1D12C7C4 /* UIScrollView+ObjcUI.h */,
 			);
 			name = OCUIKit;
 			path = ObjCUI/Classes/Core/OCUIKit;
@@ -1148,6 +1154,7 @@
 				ECD7E7A8CA45A1CB62C727A698928861 /* UITextField+ObjcUI.h in Headers */,
 				40540C811E7ACA7460749937999B29EF /* UITextView+ObjcUI.h in Headers */,
 				505F89513D18594CF22D7FABE7071813 /* UIView+Convert.h in Headers */,
+				DC02CCB6B8A560591729F91D /* UIScrollView+ObjcUI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1582,6 +1589,7 @@
 				6CC8967BEA5D576E76099E475A04CE2A /* UITextField+ObjcUI.m in Sources */,
 				824256422F426FBA66A462D1FC3C04B7 /* UITextView+ObjcUI.m in Sources */,
 				DE854929D16D576AB531531DD55C6050 /* UIView+Convert.m in Sources */,
+				DC02CB2C88AE87FFAC188783 /* UIScrollView+ObjcUI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
