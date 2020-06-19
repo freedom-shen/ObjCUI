@@ -1,0 +1,26 @@
+//
+// Created by freedom on 2020/6/19.
+//
+
+#import <Foundation/Foundation.h>
+
+typedef NSString *OCUITableViewDataSourceKey NS_EXTENSIBLE_STRING_ENUM;
+
+static const OCUITableViewDataSourceKey OCUITableViewDataSourceNumberOfRowsInSectionKey = @"OCUITableViewDataSourceNumberOfRowsInSectionKey";
+static const OCUITableViewDataSourceKey OCUITableViewDataSourceCellForRowAtIndexPathKey = @"OCUITableViewDataSourceCellForRowAtIndexPathKey";
+static const OCUITableViewDataSourceKey OCUITableViewDataSourceNumberOfSectionsInTableViewKey = @"OCUITableViewDataSourceNumberOfSectionsInTableViewKey";
+static const OCUITableViewDataSourceKey OCUITableViewDataSourceTitleForHeaderInSectionKey = @"OCUITableViewDataSourceTitleForHeaderInSectionKey";
+static const OCUITableViewDataSourceKey OCUITableViewDataSourceTitleForFooterInSectionKey = @"OCUITableViewDataSourceTitleForFooterInSectionKey";
+static const OCUITableViewDataSourceKey OCUITableViewDataSourceCanEditRowAtIndexPathKey = @"OCUITableViewDataSourceCanEditRowAtIndexPathKey";
+static const OCUITableViewDataSourceKey OCUITableViewDataSourceCanMoveRowAtIndexPathKey = @"OCUITableViewDataSourceCanMoveRowAtIndexPathKey";
+static const OCUITableViewDataSourceKey OCUITableViewDataSourceSectionIndexTitlesForTableViewKey = @"OCUITableViewDataSourceSectionIndexTitlesForTableViewKey";
+static const OCUITableViewDataSourceKey OCUITableViewDataSourceSectionForSectionIndexTitleKey = @"OCUITableViewDataSourceSectionForSectionIndexTitleKey";
+static const OCUITableViewDataSourceKey OCUITableViewDataSourceCommitEditingStyleForRowAtIndexPathKey = @"OCUITableViewDataSourceCommitEditingStyleForRowAtIndexPathKey";
+static const OCUITableViewDataSourceKey OCUITableViewDataMoveRowAtIndexPathToIndexPathKey = @"OCUITableViewDataMoveRowAtIndexPathToIndexPathKey";
+
+
+@interface OCUITableViewDataSourceWrapper : NSObject <UITableViewDataSource>
+
+@property(nonatomic, strong, readonly) NSMutableDictionary <OCUITableViewDataSourceKey, id> *delegateMap;
+
+@end

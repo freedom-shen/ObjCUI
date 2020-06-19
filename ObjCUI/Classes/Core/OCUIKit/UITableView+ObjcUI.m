@@ -2,8 +2,19 @@
 // Created by freedom on 2020/6/19.
 //
 
+#import <objc/runtime.h>
 #import "UITableView+ObjcUI.h"
+#import "OCUITableViewDataSourceWrapper.h"
+#import "OCUITableViewDelegateWrapper.h"
+#import "OCUITableViewPrefetchDataSourceWrapper.h"
+#import "OCUITableViewDragDelegateWrapper.h"
+#import "OCUITableViewDropDelegateWrapper.h"
 
+static const void *UITableViewObjcUIDataSourceKey = &UITableViewObjcUIDataSourceKey;
+static const void *UITableViewObjcUIDelegateKey = &UITableViewObjcUIDelegateKey;
+static const void *UITableViewObjcUIPrefetchDataSourceKey = &UITableViewObjcUIPrefetchDataSourceKey;
+static const void *UITableViewObjcUIDragDelegateKey = &UITableViewObjcUIDragDelegateKey;
+static const void *UITableViewObjcUIDropDelegateKey = &UITableViewObjcUIDropDelegateKey;
 
 @implementation UITableView (ObjcUI)
 
@@ -371,5 +382,481 @@
     };
 }
 
+@end
 
+@implementation UITableView (ObjcUIDataSource)
+
+- (UITableView *(^)(NSInteger(^)(UITableView *tableView)))objc_numberOfRowsInSection {
+    return ^UITableView *(NSInteger (^pFunction)(UITableView *)) {
+        self.dataSourceWrapper.delegateMap[OCUITableViewDataSourceNumberOfRowsInSectionKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(UITableViewCell(^)(UITableView *tableView, NSIndexPath *indexPath)))objc_cellForRowAtIndexPath {
+    return ^UITableView *(UITableViewCell (^pFunction)(UITableView *, NSIndexPath *)) {
+        self.dataSourceWrapper.delegateMap[OCUITableViewDataSourceCellForRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(NSInteger(^)(UITableView *tableView)))objc_numberOfSectionsInTableView {
+    return ^UITableView *(NSInteger (^pFunction)(UITableView *)) {
+        self.dataSourceWrapper.delegateMap[OCUITableViewDataSourceNumberOfSectionsInTableViewKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(NSString *(^)(UITableView *tableView, NSInteger section)))objc_titleForHeaderInSection {
+    return ^UITableView *(NSString *(^pFunction)(UITableView *, NSInteger)) {
+        self.dataSourceWrapper.delegateMap[OCUITableViewDataSourceTitleForHeaderInSectionKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(NSString *(^)(UITableView *tableView, NSInteger section)))objc_titleForFooterInSection {
+    return ^UITableView *(NSString *(^pFunction)(UITableView *, NSInteger)) {
+        self.dataSourceWrapper.delegateMap[OCUITableViewDataSourceTitleForFooterInSectionKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(BOOL (^)(UITableView *tableView, NSIndexPath *indexPath)))objc_canEditRowAtIndexPath {
+    return ^UITableView *(BOOL (^pFunction)(UITableView *, NSIndexPath *)) {
+        self.dataSourceWrapper.delegateMap[OCUITableViewDataSourceCanEditRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(BOOL (^)(UITableView *tableView, NSIndexPath *indexPath)))objc_canMoveRowAtIndexPath {
+    return ^UITableView *(BOOL (^pFunction)(UITableView *, NSIndexPath *)) {
+        self.dataSourceWrapper.delegateMap[OCUITableViewDataSourceCanMoveRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(NSArray<NSString *> *(^)(UITableView *tableView)))objc_sectionIndexTitlesForTableView {
+    return ^UITableView *(NSArray<NSString *> *(^pFunction)(UITableView *)) {
+        self.dataSourceWrapper.delegateMap[OCUITableViewDataSourceSectionIndexTitlesForTableViewKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(NSArray<NSString *> *(^)(UITableView *tableView, NSString *title, NSInteger index)))objc_sectionForSectionIndexTitleAtIndex {
+    return ^UITableView *(NSArray<NSString *> *(^pFunction)(UITableView *, NSString *, NSInteger)) {
+        self.dataSourceWrapper.delegateMap[OCUITableViewDataSourceSectionForSectionIndexTitleKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void(^)(UITableView *tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath *indexPath)))objc_commitEditingStyleForRowAtIndexPath {
+    return ^UITableView *(void (^pFunction)(UITableView *, UITableViewCellEditingStyle, NSIndexPath *)) {
+        self.dataSourceWrapper.delegateMap[OCUITableViewDataSourceCommitEditingStyleForRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void(^)(UITableView *tableView, NSIndexPath *indexPath, NSIndexPath *destinationIndexPath)))objc_moveRowAtIndexPathToIndexPathDataSource {
+    return ^UITableView *(void (^pFunction)(UITableView *, NSIndexPath *, NSIndexPath *)) {
+        self.dataSourceWrapper.delegateMap[OCUITableViewDataMoveRowAtIndexPathToIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+
+- (OCUITableViewDataSourceWrapper *)dataSourceWrapper {
+    OCUITableViewDataSourceWrapper *sourceWrapper = objc_getAssociatedObject(self, UITableViewObjcUIDataSourceKey);
+    if (!sourceWrapper) {
+        sourceWrapper = [[OCUITableViewDataSourceWrapper alloc] init];
+        self.dataSource = sourceWrapper;
+        objc_setAssociatedObject(self, UITableViewObjcUIDataSourceKey, sourceWrapper, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return sourceWrapper;
+}
+
+@end
+
+
+@implementation UITableView (ObjcUIDelegate)
+
+- (UITableView *(^)(void (^)(UITableView *tableView, UITableViewCell *tableViewCell)))objc_willDisplayCellForRowAtIndexPath {
+    return ^UITableView *(void (^pFunction)(UITableView *, UITableViewCell *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateWillDisplayCellForRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, UIView *view, NSInteger section)))objc_willDisplayHeaderViewForSection {
+    return ^UITableView *(void (^pFunction)(UITableView *, UIView *, NSInteger)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateWillDisplayHeaderViewForSectionKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, UIView *view, NSInteger section)))objc_willDisplayFooterViewForSection {
+    return ^UITableView *(void (^pFunction)(UITableView *, UIView *, NSInteger)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateWillDisplayFooterViewForSectionKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, UITableViewCell *cell, NSIndexPath *indexPah)))objc_didEndDisplayingCellForRowAtIndexPath {
+    return ^UITableView *(void (^pFunction)(UITableView *, UITableViewCell *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateDidEndDisplayingCellForRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, UIView *view, NSInteger section)))objc_didEndDisplayingHeaderViewForSection {
+    return ^UITableView *(void (^pFunction)(UITableView *, UIView *, NSInteger)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateDidEndDisplayingHeaderViewForSectionKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, UIView *view, NSInteger section)))objc_didEndDisplayingFooterViewForSection {
+    return ^UITableView *(void (^pFunction)(UITableView *, UIView *, NSInteger)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateDidEndDisplayingFooterViewForSectionKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(CGFloat (^)(UITableView *tableView, NSIndexPath *indexPath)))objc_heightForRowAtIndexPath {
+    return ^UITableView *(CGFloat (^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateHeightForRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(CGFloat (^)(UITableView *tableView, NSInteger section)))objc_heightForHeaderInSection {
+    return ^UITableView *(CGFloat (^pFunction)(UITableView *, NSInteger)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateHeightForHeaderInSectionKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(CGFloat (^)(UITableView *tableView, NSInteger section)))objc_heightForFooterInSection {
+    return ^UITableView *(CGFloat (^pFunction)(UITableView *, NSInteger)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateHeightForFooterInSectionKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(CGFloat (^)(UITableView *tableView, NSIndexPath *indexPath)))objc_estimatedHeightForRowAtIndexPath {
+    return ^UITableView *(CGFloat (^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateEstimatedHeightForRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(CGFloat (^)(UITableView *tableView, NSInteger section)))objc_estimatedHeightForHeaderInSection {
+    return ^UITableView *(CGFloat (^pFunction)(UITableView *, NSInteger)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateEstimatedHeightForHeaderInSectionKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(CGFloat (^)(UITableView *tableView, NSInteger section)))objc_estimatedHeightForFooterInSection {
+    return ^UITableView *(CGFloat (^pFunction)(UITableView *, NSInteger)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateEstimatedHeightForFooterInSectionKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(UIView *(^)(UITableView *tableView, NSInteger section)))objc_viewForHeaderInSection {
+    return ^UITableView *(UIView *(^pFunction)(UITableView *, NSInteger)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateViewForHeaderInSectionKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(UIView *(^)(UITableView *tableView, NSInteger section)))objc_viewForFooterInSection {
+    return ^UITableView *(UIView *(^pFunction)(UITableView *, NSInteger)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateViewForFooterInSectionKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, NSIndexPath *indexPath)))objc_accessoryButtonTappedForRowWithIndexPath {
+    return ^UITableView *(void (^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateAccessoryTypeForRowWithIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(BOOL (^)(UITableView *tableView, NSIndexPath *indexPath)))objc_shouldHighlightRowAtIndexPath {
+    return ^UITableView *(BOOL (^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateShouldHighlightRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, NSIndexPath *indexPath)))objc_didHighlightRowAtIndexPath {
+    return ^UITableView *(void (^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateDidHighlightRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, NSIndexPath *indexPath)))objc_didUnhighlightRowAtIndexPath {
+    return ^UITableView *(void (^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateDidUnhighlightRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(NSIndexPath *(^)(UITableView *tableView, NSIndexPath *indexPath)))objc_willSelectRowAtIndexPath {
+    return ^UITableView *(NSIndexPath *(^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateWillSelectRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(NSIndexPath *(^)(UITableView *tableView, NSIndexPath *indexPath)))objc_willDeselectRowAtIndexPath {
+    return ^UITableView *(NSIndexPath *(^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateWillDeselectRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, NSIndexPath *indexPath)))objc_didSelectRowAtIndexPath {
+    return ^UITableView *(void (^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateDidSelectRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, NSIndexPath *indexPath)))objc_didDeselectRowAtIndexPath {
+    return ^UITableView *(void (^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateDidDeselectRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(UITableViewCellEditingStyle (^)(UITableView *tableView, NSIndexPath *indexPath)))objc_editingStyleForRowAtIndexPath {
+    return ^UITableView *(UITableViewCellEditingStyle (^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateEditingStyleForRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(NSString *(^)(UITableView *tableView, NSIndexPath *indexPath)))objc_titleForDeleteConfirmationButtonForRowAtIndexPath {
+    return ^UITableView *(NSString *(^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateTitleForDeleteConfirmationButtonForRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(NSArray<UITableViewRowAction *> *(^)(UITableView *tableView, NSIndexPath *indexPath)))objc_editActionsForRowAtIndexPath {
+    return ^UITableView *(NSArray<UITableViewRowAction *> *(^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateEditActionsForRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(UISwipeActionsConfiguration *(^)(UITableView *tableView, NSIndexPath *indexPath)))objc_leadingSwipeActionsConfigurationForRowAtIndexPath {
+    return ^UITableView *(UISwipeActionsConfiguration *(^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateLeadingSwipeActionsConfigurationForRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(UISwipeActionsConfiguration *(^)(UITableView *tableView, NSIndexPath *indexPath)))objc_trailingSwipeActionsConfigurationForRowAtIndexPath {
+    return ^UITableView *(UISwipeActionsConfiguration *(^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateTrailingSwipeActionsConfigurationForRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(BOOL (^)(UITableView *tableView, NSIndexPath *indexPath)))objc_shouldIndentWhileEditingRowAtIndexPath {
+    return ^UITableView *(BOOL (^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateShouldIndentWhileEditingRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, NSIndexPath *indexPath)))objc_willBeginEditingRowAtIndexPath {
+    return ^UITableView *(void (^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateWillBeginEditingRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, NSIndexPath *indexPath)))objc_didEndEditingRowAtIndexPath {
+    return ^UITableView *(void (^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateDidEndEditingRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(NSIndexPath *(^)(UITableView *tableView, NSIndexPath *sourceIndexPath, NSIndexPath *proposedDestinationIndexPath)))objc_targetIndexPathForMoveFromRowAtIndexPathToProposedIndexPath {
+    return ^UITableView *(NSIndexPath *(^pFunction)(UITableView *, NSIndexPath *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateTargetIndexPathForMoveFromRowAtIndexPathToProposedIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(NSInteger (^)(UITableView *tableView, NSIndexPath *indexPath)))objc_indentationLevelForRowAtIndexPath {
+    return ^UITableView *(NSInteger (^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateIndentationLevelForRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(BOOL (^)(UITableView *tableView, NSIndexPath *indexPath)))objc_shouldShowMenuForRowAtIndexPath {
+    return ^UITableView *(BOOL (^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateShouldShowMenuForRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(BOOL (^)(UITableView *tableView, SEL action, NSIndexPath *indexPath, id sender)))objc_canPerformActionForRowAtIndexPathWithSender {
+    return ^UITableView *(BOOL (^pFunction)(UITableView *, SEL, NSIndexPath *, id)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateCanPerformActionForRowAtIndexPathWithSenderKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, SEL action, NSIndexPath *indexPath, id sender)))objc_performActionForRowAtIndexPathWithSender {
+    return ^UITableView *(void (^pFunction)(UITableView *, SEL, NSIndexPath *, id)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegatePerformActionForRowAtIndexPathWithSenderKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(BOOL (^)(UITableView *tableView, NSIndexPath *indexPath)))objc_canFocusRowAtIndexPath {
+    return ^UITableView *(BOOL (^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateCanFocusRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(BOOL (^)(UITableView *tableView, UITableViewFocusUpdateContext *context)))objc_shouldUpdateFocusInContext {
+    return ^UITableView *(BOOL (^pFunction)(UITableView *, UITableViewFocusUpdateContext *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateShouldUpdateFocusInContextKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, UITableViewFocusUpdateContext *context, UIFocusAnimationCoordinator *coordinator)))objc_didUpdateFocusInContextWithAnimationCoordinator {
+    return ^UITableView *(void (^pFunction)(UITableView *, UITableViewFocusUpdateContext *, UIFocusAnimationCoordinator *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateDidUpdateFocusInContextWithAnimationCoordinatorKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(NSIndexPath *(^)(UITableView *tableView)))objc_indexPathForPreferredFocusedViewInTableView {
+    return ^UITableView *(NSIndexPath *(^pFunction)(UITableView *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateIndexPathForPreferredFocusedViewInTableViewKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(BOOL (^)(UITableView *tableView, NSIndexPath *indexPath, id <UISpringLoadedInteractionContext> context)))objc_shouldSpringLoadRowAtIndexPathWithContext {
+    return ^UITableView *(BOOL (^pFunction)(UITableView *, NSIndexPath *, id <UISpringLoadedInteractionContext>)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateShouldSpringLoadRowAtIndexPathWithContextKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(BOOL (^)(UITableView *tableView, NSIndexPath *indexPath)))objc_shouldBeginMultipleSelectionInteractionAtIndexPath {
+    return ^UITableView *(BOOL (^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateShouldBeginMultipleSelectionInteractionAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, NSIndexPath *indexPath)))objc_didBeginMultipleSelectionInteractionAtIndexPath {
+    return ^UITableView *(void (^pFunction)(UITableView *, NSIndexPath *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateDidBeginMultipleSelectionInteractionAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView)))objc_tableViewDidEndMultipleSelectionInteraction {
+    return ^UITableView *(void (^pFunction)(UITableView *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateDidEndMultipleSelectionInteractionKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(UIContextMenuConfiguration *(^)(UITableView *tableView, NSIndexPath *indexPath, CGPoint point)))objc_contextMenuConfigurationForRowAtIndexPathPoint {
+    return ^UITableView *(UIContextMenuConfiguration *(^pFunction)(UITableView *, NSIndexPath *, CGPoint)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateContextMenuConfigurationForRowAtIndexPathPointKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(UITargetedPreview *(^)(UITableView *tableView, UIContextMenuConfiguration *configuration)))objc_previewForHighlightingContextMenuWithConfiguration {
+    return ^UITableView *(UITargetedPreview *(^pFunction)(UITableView *, UIContextMenuConfiguration *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegatePreviewForHighlightingContextMenuWithConfigurationKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(UITargetedPreview *(^)(UITableView *tableView, UIContextMenuConfiguration *configuration)))objc_previewForDismissingContextMenuWithConfiguration {
+    return ^UITableView *(UITargetedPreview *(^pFunction)(UITableView *, UIContextMenuConfiguration *)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegatePreviewForDismissingContextMenuWithConfigurationKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, UIContextMenuConfiguration *configuration, id <UIContextMenuInteractionCommitAnimating> animator)))objc_willPerformPreviewActionForMenuWithConfigurationAnimator {
+    return ^UITableView *(void (^pFunction)(UITableView *, UIContextMenuConfiguration *, id <UIContextMenuInteractionCommitAnimating>)) {
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateWillPerformPreviewActionForMenuWithConfigurationAnimatorKey] = pFunction;
+        return self;
+    };
+}
+
+- (OCUITableViewDelegateWrapper *)delegateWrapper {
+    OCUITableViewDelegateWrapper *delegateWrapper = objc_getAssociatedObject(self, UITableViewObjcUIDelegateKey);
+    if (!delegateWrapper) {
+        delegateWrapper = [[OCUITableViewDelegateWrapper alloc] init];
+        self.delegate = delegateWrapper;
+        objc_setAssociatedObject(self, UITableViewObjcUIDelegateKey, delegateWrapper, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return delegateWrapper;
+}
+
+@end
+
+@implementation UITableView (ObjcUIDataSourcePrefetching)
+
+- (OCUITableViewPrefetchDataSourceWrapper *)prefetchDataSourceWrapper {
+    OCUITableViewPrefetchDataSourceWrapper *sourceWrapper = objc_getAssociatedObject(self, UITableViewObjcUIPrefetchDataSourceKey);
+    if (!sourceWrapper) {
+        sourceWrapper = [[OCUITableViewPrefetchDataSourceWrapper alloc] init];
+        self.prefetchDataSource = sourceWrapper;
+        objc_setAssociatedObject(self, UITableViewObjcUIPrefetchDataSourceKey, sourceWrapper, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return sourceWrapper;
+}
+
+@end
+
+@implementation UITableView (ObjcUIDragDelegate)
+
+- (OCUITableViewDragDelegateWrapper *)dragDelegateWrapper {
+    OCUITableViewDragDelegateWrapper *delegateWrapper = objc_getAssociatedObject(self, UITableViewObjcUIDragDelegateKey);
+    if (!delegateWrapper) {
+        delegateWrapper = [[OCUITableViewDragDelegateWrapper alloc] init];
+        self.dragDelegate = delegateWrapper;
+        objc_setAssociatedObject(self, UITableViewObjcUIDragDelegateKey, delegateWrapper, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return delegateWrapper;
+}
+
+@end
+
+@implementation UITableView (ObjcUIDropDelegate)
+
+- (OCUITableViewDropDelegateWrapper *)dropDelegateWrapper {
+    OCUITableViewDropDelegateWrapper *delegateWrapper = objc_getAssociatedObject(self, UITableViewObjcUIDropDelegateKey);
+    if (!delegateWrapper) {
+        delegateWrapper = [[OCUITableViewDropDelegateWrapper alloc] init];
+        self.dropDelegate = delegateWrapper;
+        objc_setAssociatedObject(self, UITableViewObjcUIDropDelegateKey, delegateWrapper, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return delegateWrapper;
+}
 @end

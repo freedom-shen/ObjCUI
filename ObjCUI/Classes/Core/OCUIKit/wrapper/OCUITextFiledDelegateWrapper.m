@@ -2,10 +2,10 @@
 // Created by freedom on 2020/6/18.
 //
 
-#import "OCUITextFiledDelegateWarpper.h"
+#import "OCUITextFiledDelegateWrapper.h"
 
 
-@implementation OCUITextFiledDelegateWarpper
+@implementation OCUITextFiledDelegateWrapper
 
 @synthesize delegateMap = _delegateMap;
 

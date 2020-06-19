@@ -16,7 +16,7 @@ static const OCUITextFieldDelegateKey OCUITextFieldDidChangeSelectionKey = @"OCU
 static const OCUITextFieldDelegateKey OCUITextFieldShouldClearKey = @"OCUITextFieldShouldClearKey";
 static const OCUITextFieldDelegateKey OCUITextFieldShouldReturnKey = @"OCUITextFieldShouldReturnKey";
 
-@interface OCUITextFiledDelegateWarpper : NSObject <UITextFieldDelegate>
+@interface OCUITextFiledDelegateWrapper : NSObject <UITextFieldDelegate>
 
 @property(nonatomic, strong, readonly) NSMutableDictionary <OCUITextFieldDelegateKey, id> *delegateMap;
 
