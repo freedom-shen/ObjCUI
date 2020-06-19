@@ -80,4 +80,35 @@
 
 - (UIScrollView *(^)(UIRefreshControl *refreshControl))objc_refreshControl API_AVAILABLE(ios(10.0)) API_UNAVAILABLE(tvos);
 
+#pragma mark - Delegate
+
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_scrollViewDidScroll;
+
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_scrollViewDidZoom API_AVAILABLE(ios(3.2));
+
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_scrollViewWillBeginDragging;
+
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView, CGPoint velocity, CGPoint *targetContentOffset)))objc_scrollViewWillEndDraggingWithVelocity API_AVAILABLE(ios(5.0));
+
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView, BOOL decelerate)))objc_scrollViewDidEndDraggingWillDecelerate;
+
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_scrollViewWillBeginDecelerating;
+
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_scrollViewDidEndDecelerating;
+
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_scrollViewDidEndScrollingAnimation;
+
+- (UIScrollView *(^)(UIView(^)(UIScrollView *scrollView)))objc_viewForZoomingInScrollView;
+
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_scrollViewWillBeginZooming;
+
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView, UIView *view, CGFloat scale)))objc_scrollViewDidEndZoomingWithViewAtScale;
+
+- (UIScrollView *(^)(BOOL(^)(UIScrollView *scrollView)))objc_scrollViewShouldScrollToTop;
+
+- (UIScrollView *(^)(void (^)(UIScrollView *scrollView)))objc_scrollViewDidScrollToTop;
+
+- (UIScrollView *(^)(void (^)(UIScrollView *scrollView)))objc_scrollViewDidChangeAdjustedContentInset  API_AVAILABLE(ios(11.0), tvos(11.0));
+
+
 @end

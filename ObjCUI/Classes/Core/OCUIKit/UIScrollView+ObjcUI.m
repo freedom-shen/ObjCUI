@@ -2,14 +2,17 @@
 // Created by freedom on 2020/6/19.
 //
 
+#import <objc/runtime.h>
 #import "UIScrollView+ObjcUI.h"
+#import "OCUIScrollViewDelegateWrapper.h"
 
+static const void *UIScrollViewObjcUIEventKey = &UIScrollViewObjcUIEventKey;
 
 @implementation UIScrollView (ObjcUI)
 
 + (UIScrollView *(^)())objc_create {
     return ^UIScrollView * {
-        UIScrollView *scrollView= [[UIScrollView alloc] init];
+        UIScrollView *scrollView = [[UIScrollView alloc] init];
         return scrollView;
     };
 }
@@ -266,5 +269,117 @@
     };
 }
 
+#pragma mark - Delegate
+
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_scrollViewDidScroll {
+    return ^UIScrollView *(void (^pFunction)(UIScrollView *)) {
+        self.delegateBlockWarp.delegateMap[OCUIScrollViewDidScrollKey] = pFunction;
+        return self;
+    };
+}
+
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_scrollViewDidZoom {
+    return ^UIScrollView *(void (^pFunction)(UIScrollView *)) {
+        self.delegateBlockWarp.delegateMap[OCUIScrollViewDidZoomKey] = pFunction;
+        return self;
+    };
+}
+
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_scrollViewWillBeginDragging {
+    return ^UIScrollView *(void (^pFunction)(UIScrollView *)) {
+        self.delegateBlockWarp.delegateMap[OCUIScrollViewWillBeginDraggingKey] = pFunction;
+        return self;
+    };
+}
+
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView, CGPoint velocity, CGPoint *targetContentOffset)))objc_scrollViewWillEndDraggingWithVelocity {
+    return ^UIScrollView *(void (^pFunction)(UIScrollView *, CGPoint, CGPoint *)) {
+        self.delegateBlockWarp.delegateMap[OCUIScrollViewWillEndDraggingKey] = pFunction;
+        return self;
+    };
+}
+
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView, BOOL decelerate)))objc_scrollViewDidEndDraggingWillDecelerate {
+    return ^UIScrollView *(void (^pFunction)(UIScrollView *, BOOL)) {
+        self.delegateBlockWarp.delegateMap[OCUIScrollViewDidEndDraggingWillDecelerateKey] = pFunction;
+        return self;
+    };
+}
+
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_scrollViewWillBeginDecelerating {
+    return ^UIScrollView *(void (^pFunction)(UIScrollView *)) {
+        self.delegateBlockWarp.delegateMap[OCUIScrollViewWillBeginDeceleratingKey] = pFunction;
+        return self;
+    };
+}
+
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_scrollViewDidEndDecelerating {
+    return ^UIScrollView *(void (^pFunction)(UIScrollView *)) {
+        self.delegateBlockWarp.delegateMap[OCUIScrollViewDidEndDeceleratingKey] = pFunction;
+        return self;
+    };
+}
+
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_scrollViewDidEndScrollingAnimation {
+    return ^UIScrollView *(void (^pFunction)(UIScrollView *)) {
+        self.delegateBlockWarp.delegateMap[OCUIScrollViewDidEndScrollingAnimationKey] = pFunction;
+        return self;
+    };
+}
+
+- (UIScrollView *(^)(UIView(^)(UIScrollView *scrollView)))objc_viewForZoomingInScrollView {
+    return ^UIScrollView *(UIView (^pFunction)(UIScrollView *)) {
+        self.delegateBlockWarp.delegateMap[OCUIViewForZoomingInScrollViewKey] = pFunction;
+        return self;
+    };
+}
+
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_scrollViewWillBeginZooming {
+    return ^UIScrollView *(void (^pFunction)(UIScrollView *)) {
+        self.delegateBlockWarp.delegateMap[OCUIScrollViewWillBeginZoomingKey] = pFunction;
+        return self;
+    };
+}
+
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView, UIView *view, CGFloat scale)))objc_scrollViewDidEndZoomingWithViewAtScale {
+    return ^UIScrollView *(void (^pFunction)(UIScrollView *, UIView *, CGFloat)) {
+        self.delegateBlockWarp.delegateMap[OCUIScrollViewDidEndZoomingWithViewAtScaleKey] = pFunction;
+        return self;
+    };
+}
+
+- (UIScrollView *(^)(BOOL(^)(UIScrollView *scrollView)))objc_scrollViewShouldScrollToTop {
+    return ^UIScrollView *(BOOL (^pFunction)(UIScrollView *)) {
+        self.delegateBlockWarp.delegateMap[OCUIScrollViewShouldScrollToTopKey] = pFunction;
+        return self;
+    };
+}
+
+- (UIScrollView *(^)(void (^)(UIScrollView *scrollView)))objc_scrollViewDidScrollToTop {
+    return ^UIScrollView *(void (^pFunction)(UIScrollView *)) {
+        self.delegateBlockWarp.delegateMap[OCUIScrollViewDidScrollToTopKey] = pFunction;
+        return self;
+    };
+}
+
+- (UIScrollView *(^)(void (^)(UIScrollView *scrollView)))objc_scrollViewDidChangeAdjustedContentInset {
+    return ^UIScrollView *(void (^pFunction)(UIScrollView *)) {
+        self.delegateBlockWarp.delegateMap[OCUIScrollViewDidChangeAdjustedContentInsetKey] = pFunction;
+        return self;
+    };
+}
+
+
+#pragma mark - Get
+
+- (OCUIScrollViewDelegateWrapper *)delegateBlockWarp {
+    OCUIScrollViewDelegateWrapper *delegateWarp = objc_getAssociatedObject(self, UIScrollViewObjcUIEventKey);
+    if (!delegateWarp) {
+        delegateWarp = [[OCUIScrollViewDelegateWrapper alloc] init];
+        self.delegate = delegateWarp;
+        objc_setAssociatedObject(self, UIScrollViewObjcUIEventKey, delegateWarp, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return delegateWarp;
+}
 
 @end
