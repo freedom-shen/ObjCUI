@@ -229,7 +229,9 @@
 		D84202B886E0ABE8C743A3F6E7FCEFA8 /* RACStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4429DF8BE2EBF0931018FEEFE8E01EAC /* RACStream.m */; };
 		DA2DF4C54D6C21E70E730DF2FE2B2095 /* RACScheduler.h in Headers */ = {isa = PBXBuildFile; fileRef = A986DF3061355DB51DDF1AD84B05FF17 /* RACScheduler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DADBA695D4FAC5EBD674FA04C33C1350 /* RACSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D10892C5E537B03B117B2B5B17507E7 /* RACSequence.m */; };
+		DC02C81F52C51D7E4D3E9C09 /* OCUIScrollViewDelegateWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DC02C9874FC9787BA89147D7 /* OCUIScrollViewDelegateWrapper.m */; };
 		DC02CB2C88AE87FFAC188783 /* UIScrollView+ObjcUI.m in Sources */ = {isa = PBXBuildFile; fileRef = DC02C76B715EC44B97717BC3 /* UIScrollView+ObjcUI.m */; };
+		DC02CC0214E8367F06E5A094 /* OCUIScrollViewDelegateWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = DC02C4BFFC0166DA51141502 /* OCUIScrollViewDelegateWrapper.h */; };
 		DC02CCB6B8A560591729F91D /* UIScrollView+ObjcUI.h in Headers */ = {isa = PBXBuildFile; fileRef = DC02C2C518D6759D1D12C7C4 /* UIScrollView+ObjcUI.h */; };
 		DDDDEAA31A9E1F29C248AF42EC54F8B1 /* NSString+RACSequenceAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 20C182F0030CB89E7D6BD11530D6907A /* NSString+RACSequenceAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DE854929D16D576AB531531DD55C6050 /* UIView+Convert.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F621271437E2FBFBD999D0EDCCA6C8 /* UIView+Convert.m */; };
@@ -562,7 +564,9 @@
 		DB8C87C0DCE9584DA0236A0D7CB3142A /* Pods-ObjCUI_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ObjCUI_Example.release.xcconfig"; sourceTree = "<group>"; };
 		DBDA46D8327D6C19477618A52B5A04D2 /* NSObject+RACPropertySubscribing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+RACPropertySubscribing.h"; path = "ReactiveObjC/NSObject+RACPropertySubscribing.h"; sourceTree = "<group>"; };
 		DC02C2C518D6759D1D12C7C4 /* UIScrollView+ObjcUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+ObjcUI.h"; sourceTree = "<group>"; };
+		DC02C4BFFC0166DA51141502 /* OCUIScrollViewDelegateWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIScrollViewDelegateWrapper.h; sourceTree = "<group>"; };
 		DC02C76B715EC44B97717BC3 /* UIScrollView+ObjcUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+ObjcUI.m"; sourceTree = "<group>"; };
+		DC02C9874FC9787BA89147D7 /* OCUIScrollViewDelegateWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUIScrollViewDelegateWrapper.m; sourceTree = "<group>"; };
 		DC9BE892EB81392FF93A8CCB40D3F824 /* Masonry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Masonry.release.xcconfig; sourceTree = "<group>"; };
 		DE8FEB0FAA4AF326063985C450E51BD0 /* RACTupleSequence.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACTupleSequence.m; path = ReactiveObjC/RACTupleSequence.m; sourceTree = "<group>"; };
 		E0349FB55A4BEB817E8331B3147ED3E6 /* MASConstraintMaker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraintMaker.m; path = Masonry/MASConstraintMaker.m; sourceTree = "<group>"; };
@@ -940,6 +944,8 @@
 				B6AD417DB1212CE516CD3F260C8C6A84 /* OCUITextFiledDelegateWarpper.m */,
 				E9399D19C0B6C6951536847548FEC501 /* OCUITextViewDelegateWrapper.h */,
 				5E8F561A0FDB69688D2FE8F8B4EDDC09 /* OCUITextViewDelegateWrapper.m */,
+				DC02C9874FC9787BA89147D7 /* OCUIScrollViewDelegateWrapper.m */,
+				DC02C4BFFC0166DA51141502 /* OCUIScrollViewDelegateWrapper.h */,
 			);
 			name = wrapper;
 			path = wrapper;
@@ -1155,6 +1161,7 @@
 				40540C811E7ACA7460749937999B29EF /* UITextView+ObjcUI.h in Headers */,
 				505F89513D18594CF22D7FABE7071813 /* UIView+Convert.h in Headers */,
 				DC02CCB6B8A560591729F91D /* UIScrollView+ObjcUI.h in Headers */,
+				DC02CC0214E8367F06E5A094 /* OCUIScrollViewDelegateWrapper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1590,6 +1597,7 @@
 				824256422F426FBA66A462D1FC3C04B7 /* UITextView+ObjcUI.m in Sources */,
 				DE854929D16D576AB531531DD55C6050 /* UIView+Convert.m in Sources */,
 				DC02CB2C88AE87FFAC188783 /* UIScrollView+ObjcUI.m in Sources */,
+				DC02C81F52C51D7E4D3E9C09 /* OCUIScrollViewDelegateWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
