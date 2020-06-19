@@ -10,7 +10,7 @@
 
 @end
 
-@interface OCUIControllerWrapper : NSObject<OCUIControllerWrapperInterface>
+@interface OCUIControlWrapper : NSObject<OCUIControllerWrapperInterface>
 
 @property (nonatomic, copy,readonly) void (^handler)(id);
 

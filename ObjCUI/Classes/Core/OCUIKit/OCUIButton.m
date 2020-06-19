@@ -3,13 +3,13 @@
 //
 
 #import "OCUIButton.h"
-#import "OCUIControllerWrapper.h"
+#import "OCUIControlWrapper.h"
 
 
 @interface OCUIButton ()
 
 @property(nonatomic, strong) UIButton *button;
-@property(nonatomic, strong) NSMutableDictionary <NSNumber *, OCUIControllerWrapper *> *eventMap;
+@property(nonatomic, strong) NSMutableDictionary <NSNumber *, OCUIControlWrapper *> *eventMap;
 
 @end
 
@@ -67,7 +67,7 @@
 - (OCUIButton *(^)(UIControlEvents controlEvents, void(^)(UIButton *button)))action {
     return ^OCUIButton *(UIControlEvents controlEvents, void (^pFunction)(UIButton *)) {
         if (!self.eventMap[@(controlEvents)]) {
-            self.eventMap[@(controlEvents)] = [[OCUIControllerWrapper alloc] initWithHandler:pFunction];
+            self.eventMap[@(controlEvents)] = [[OCUIControlWrapper alloc] initWithHandler:pFunction];
         }
         [self.button addTarget:self.eventMap[@(controlEvents)] action:@selector(didSelect:) forControlEvents:controlEvents];
         return self;
@@ -161,7 +161,7 @@
     return _button;
 }
 
-- (NSMutableDictionary<NSNumber *, OCUIControllerWrapper *> *)eventMap {
+- (NSMutableDictionary<NSNumber *, OCUIControlWrapper *> *)eventMap {
     if (!_eventMap) {
         _eventMap = [NSMutableDictionary dictionary];
     }

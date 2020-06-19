@@ -4,7 +4,7 @@
 
 #import <objc/runtime.h>
 #import "UIButton+ObjcUI.h"
-#import "OCUIControllerWrapper.h"
+#import "OCUIControlWrapper.h"
 
 static const void *UIButtonObjcUIEventKey = &UIButtonObjcUIEventKey;
 
@@ -70,7 +70,7 @@ static const void *UIButtonObjcUIEventKey = &UIButtonObjcUIEventKey;
 - (UIButton *(^)(UIControlEvents controlEvents, void(^)(UIButton *button)))objc_action {
     return ^UIButton *(UIControlEvents controlEvents, void (^pFunction)(UIButton *)) {
         if (!self.eventMap[@(controlEvents)]) {
-            self.eventMap[@(controlEvents)] = [[OCUIControllerWrapper alloc] initWithHandler:pFunction];
+            self.eventMap[@(controlEvents)] = [[OCUIControlWrapper alloc] initWithHandler:pFunction];
         }
         [self addTarget:self.eventMap[@(controlEvents)] action:@selector(didSelect:) forControlEvents:controlEvents];
         return self;

@@ -2,16 +2,16 @@
 // Created by freedom on 2020/6/15.
 //
 
-#import "OCUIControllerWrapper.h"
+#import "OCUIControlWrapper.h"
 
 
-@interface OCUIControllerWrapper ()
+@interface OCUIControlWrapper ()
 
 @property(nonatomic, copy) void (^handler)(id );
 
 @end
 
-@implementation OCUIControllerWrapper
+@implementation OCUIControlWrapper
 
 - (id)initWithHandler:(void (^)(id ))handler {
     self = [super init];

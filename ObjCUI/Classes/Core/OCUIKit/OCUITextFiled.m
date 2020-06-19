@@ -3,13 +3,13 @@
 //
 
 #import "OCUITextFiled.h"
-#import "OCUIControllerWrapper.h"
+#import "OCUIControlWrapper.h"
 
 
 @interface OCUITextFiled () <UITextFieldDelegate>
 
 @property(nonatomic, strong) UITextField *textField;
-@property(nonatomic, strong) NSMutableDictionary <NSNumber *, OCUIControllerWrapper *> *eventMap;
+@property(nonatomic, strong) NSMutableDictionary <NSNumber *, OCUIControlWrapper *> *eventMap;
 @property(nonatomic, strong) NSMutableDictionary <NSString *, id> *delegateBlockMap;
 
 @end
@@ -99,7 +99,7 @@
 - (OCUITextFiled *(^)(UIControlEvents controlEvents, void(^)(UITextField *textFiled)))action {
     return ^OCUITextFiled *(UIControlEvents controlEvents, void (^pFunction)(UITextField *)) {
         if (!self.eventMap[@(controlEvents)]) {
-            self.eventMap[@(controlEvents)] = [[OCUIControllerWrapper alloc] initWithHandler:pFunction];
+            self.eventMap[@(controlEvents)] = [[OCUIControlWrapper alloc] initWithHandler:pFunction];
         }
         [self.textField addTarget:self.eventMap[@(controlEvents)] action:@selector(didSelect:) forControlEvents:controlEvents];
         return self;
@@ -297,7 +297,7 @@
     return _textField;
 }
 
-- (NSMutableDictionary<NSNumber *, OCUIControllerWrapper *> *)eventMap {
+- (NSMutableDictionary<NSNumber *, OCUIControlWrapper *> *)eventMap {
     if (!_eventMap) {
         _eventMap = [NSMutableDictionary dictionary];
     }

@@ -23,8 +23,10 @@
 #import "UIButton+ObjcUI.h"
 #import "UIImageView+ObjcUI.h"
 #import "UILabel+ObjcUI.h"
+#import "UITextField+ObjcUI.h"
 #import "UIView+Convert.h"
-#import "OCUIControllerWrapper.h"
+#import "OCUIControlWrapper.h"
+#import "OCUITextFiledDelegateWarp.h"
 
 FOUNDATION_EXPORT double ObjCUIVersionNumber;
 FOUNDATION_EXPORT const unsigned char ObjCUIVersionString[];
