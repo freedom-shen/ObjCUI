@@ -2,7 +2,6 @@
 // Created by freedom on 2020/6/16.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 @interface UIButton (ObjcUI)

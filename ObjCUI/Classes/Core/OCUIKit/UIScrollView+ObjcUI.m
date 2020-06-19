@@ -269,6 +269,16 @@ static const void *UIScrollViewObjcUIEventKey = &UIScrollViewObjcUIEventKey;
     };
 }
 
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_maker {
+    return ^UIScrollView *(void (^pFunction)(UIScrollView *)) {
+        if (pFunction) {
+            pFunction(self);
+        }
+        return self;
+    };
+}
+
+
 #pragma mark - Delegate
 
 - (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_scrollViewDidScroll {
@@ -368,7 +378,6 @@ static const void *UIScrollViewObjcUIEventKey = &UIScrollViewObjcUIEventKey;
         return self;
     };
 }
-
 
 #pragma mark - Get
 

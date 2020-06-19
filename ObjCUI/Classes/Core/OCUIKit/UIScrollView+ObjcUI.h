@@ -80,6 +80,8 @@
 
 - (UIScrollView *(^)(UIRefreshControl *refreshControl))objc_refreshControl API_AVAILABLE(ios(10.0)) API_UNAVAILABLE(tvos);
 
+- (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_maker;
+
 #pragma mark - Delegate
 
 - (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_scrollViewDidScroll;
