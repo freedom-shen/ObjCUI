@@ -337,8 +337,8 @@ static const void *UIScrollViewObjcUIEventKey = &UIScrollViewObjcUIEventKey;
     };
 }
 
-- (UIScrollView *(^)(UIView(^)(UIScrollView *scrollView)))objc_viewForZoomingInScrollView {
-    return ^UIScrollView *(UIView (^pFunction)(UIScrollView *)) {
+- (UIScrollView *(^)(UIView *(^)(UIScrollView *scrollView)))objc_viewForZoomingInScrollView {
+    return ^UIScrollView *(UIView *(^pFunction)(UIScrollView *)) {
         self.delegateBlockWarp.delegateMap[OCUIViewForZoomingInScrollViewKey] = pFunction;
         return self;
     };

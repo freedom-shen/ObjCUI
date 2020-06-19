@@ -3,8 +3,6 @@
 // Copyright (c) 2020 沈晓敏. All rights reserved.
 //
 
-#import <ObjCUI/OCUIPadding.h>
-#import <ObjCUI/UIView+Convert.h>
 #import "OCUIKitTestVC.h"
 #import "NSObject+RACDeallocating.h"
 #import <ObjCUI/UILabel+ObjcUI.h>
@@ -16,7 +14,6 @@
 
 @interface OCUIKitTestVC ()
 
-@property(nonatomic, strong) OCUIContainer *container;
 
 @end
 
@@ -106,15 +103,6 @@
     [[textView rac_willDeallocSignal] subscribeCompleted:^{
         NSLog(@"textView is safe");
     }];
-}
-
-#pragma mark - Get
-
-- (OCUIContainer *)container {
-    if (!_container) {
-        _container = [self.view convertToOCUIContainer];
-    }
-    return _container;
 }
 
 @end

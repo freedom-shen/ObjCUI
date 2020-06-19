@@ -393,8 +393,8 @@ static const void *UITableViewObjcUIDropDelegateKey = &UITableViewObjcUIDropDele
     };
 }
 
-- (UITableView *(^)(UITableViewCell(^)(UITableView *tableView, NSIndexPath *indexPath)))objc_cellForRowAtIndexPath {
-    return ^UITableView *(UITableViewCell (^pFunction)(UITableView *, NSIndexPath *)) {
+- (UITableView *(^)(UITableViewCell *(^)(UITableView *tableView, NSIndexPath *indexPath)))objc_cellForRowAtIndexPath {
+    return ^UITableView *(UITableViewCell* (^pFunction)(UITableView *, NSIndexPath *)) {
         self.dataSourceWrapper.delegateMap[OCUITableViewDataSourceCellForRowAtIndexPathKey] = pFunction;
         return self;
     };
@@ -579,7 +579,7 @@ static const void *UITableViewObjcUIDropDelegateKey = &UITableViewObjcUIDropDele
 
 - (UITableView *(^)(void (^)(UITableView *tableView, NSIndexPath *indexPath)))objc_accessoryButtonTappedForRowWithIndexPath {
     return ^UITableView *(void (^pFunction)(UITableView *, NSIndexPath *)) {
-        self.delegateWrapper.delegateMap[OCUITableViewDelegateAccessoryTypeForRowWithIndexPathKey] = pFunction;
+        self.delegateWrapper.delegateMap[OCUITableViewDelegateAccessoryButtonTappedForRowWithIndexPathKey] = pFunction;
         return self;
     };
 }

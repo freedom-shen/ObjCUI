@@ -116,7 +116,7 @@
 
 - (UITableView *(^)(NSInteger(^)(UITableView *tableView)))objc_numberOfRowsInSection;
 
-- (UITableView *(^)(UITableViewCell(^)(UITableView *tableView, NSIndexPath *indexPath)))objc_cellForRowAtIndexPath;
+- (UITableView *(^)(UITableViewCell *(^)(UITableView *tableView, NSIndexPath *indexPath)))objc_cellForRowAtIndexPath;
 
 - (UITableView *(^)(NSInteger(^)(UITableView *tableView)))objc_numberOfSectionsInTableView;
 

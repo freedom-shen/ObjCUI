@@ -100,7 +100,7 @@
 
 - (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_scrollViewDidEndScrollingAnimation;
 
-- (UIScrollView *(^)(UIView(^)(UIScrollView *scrollView)))objc_viewForZoomingInScrollView;
+- (UIScrollView *(^)(UIView *(^)(UIScrollView *scrollView)))objc_viewForZoomingInScrollView;
 
 - (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_scrollViewWillBeginZooming;
 

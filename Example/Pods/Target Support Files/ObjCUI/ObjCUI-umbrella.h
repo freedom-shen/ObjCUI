@@ -30,7 +30,9 @@
 #import "OCUITextViewDelegateWrapper.h"
 #import "OCUITableViewDataSourceWrapper.h"
 #import "OCUITableViewDelegateWrapper.h"
-#import "UITableViewPrefetchDataSourceWrapper.h"
+#import "OCUITableViewDragDelegateWrapper.h"
+#import "OCUITableViewDropDelegateWrapper.h"
+#import "OCUITableViewPrefetchDataSourceWrapper.h"
 
 FOUNDATION_EXPORT double ObjCUIVersionNumber;
 FOUNDATION_EXPORT const unsigned char ObjCUIVersionString[];
