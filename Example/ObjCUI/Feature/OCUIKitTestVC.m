@@ -3,24 +3,19 @@
 // Copyright (c) 2020 沈晓敏. All rights reserved.
 //
 
-#import <ObjCUI/OCUIText.h>
 #import <ObjCUI/OCUIPadding.h>
 #import <ObjCUI/UIView+Convert.h>
 #import "OCUIKitTestVC.h"
 #import "NSObject+RACDeallocating.h"
-#import <ObjCUI/OCUITextFiled.h>
-#import <ObjCUI/OCUITextView.h>
-#import <ObjCUI/OCUIButton.h>
-#import <ObjCUI/OCUIImage.h>
 #import <ObjCUI/UILabel+ObjcUI.h>
 #import <ObjCUI/UIButton+ObjcUI.h>
 #import <View+MASAdditions.h>
 #import <ReactiveObjC/RACSignal+Operations.h>
 #import <ObjCUI/UITextField+ObjcUI.h>
+#import <ObjCUI/UITextView+ObjcUI.h>
 
 @interface OCUIKitTestVC ()
 
-@property(nonatomic, strong) OCUIText *ocuiText;
 @property(nonatomic, strong) OCUIContainer *container;
 
 @end
@@ -35,62 +30,10 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
 
-    self.container.childView(
-            OCUIPadding.create().left(200).top(100).childView(
-                    OCUIText.create()
-                            .text(@"我是个测试数据")
-                            .font([UIFont systemFontOfSize:12])
-                            .textAlignment(NSTextAlignmentCenter)
-                            .textColor([UIColor redColor])
-                            .maker(^(UILabel *label) {
-                                label.numberOfLines = 2;
-                            })
-                            .backgroundColor([UIColor blueColor])
-            )
-    );
 
-    self.container.childView(
-            OCUIPadding.create().left(200).top(150).childView(
-                    OCUITextFiled.create()
-                            .placeHolder(@"我是一个测试")
-                            .action(UIControlEventEditingChanged, ^(UITextField *textField) {
-                                NSLog(@"%@", textField.text);
-                            })
-                            .textFieldShouldBeginEditing(^BOOL(UITextField *textField) {
-                                return NO;
-                            })
-            )
-    );
 
-    self.container.childView(
-            OCUIPadding.create().left(200).top(200).childView(
-                    OCUITextView.create()
-                            .text(@"我来试一下")
-                            .textViewDidChange(^(UITextView *textView) {
-                                NSLog(@"text did change:%@", textView.text);
-                            })
-                            .width(200)
-                            .height(100)
-                            .backgroundColor([UIColor blueColor])
-            )
-    );
 
-    self.container.childView(
-            OCUIPadding.create().left(200).top(300).childView(
-                    OCUIButton.create()
-                            .title(UIControlStateNormal, @"我是一个测试按钮")
-                            .backgroundColor([UIColor redColor])
-                            .action(UIControlEventTouchUpInside, ^(UIButton *sender) {
-                                NSLog(@"按钮被点击了");
-                            })
-            )
-    );
 
-    self.container.childView(
-            OCUIPadding.create().left(0).top(350).right(0).childView(
-                    OCUIImage.create().image([UIImage imageNamed:@"email"])
-            )
-    );
 
     UIButton *button = UIButton
             .objc_create()
@@ -143,7 +86,26 @@
         make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(44);
     }];
+    [[textField rac_willDeallocSignal] subscribeCompleted:^{
+        NSLog(@"textField is safe");
+    }];
 
+    UITextView *textView = [[UITextView alloc] init];
+    textView
+            .objc_text(@"我来试一试TextView")
+            .objc_font([UIFont systemFontOfSize:20])
+            .objc_textViewDidChange(^(UITextView *textView) {
+                NSLog(@"textView did change %@", textView.text);
+            });
+    [self.view addSubview:textView];
+    [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(textField.mas_bottom).offset(10);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(100);
+    }];
+    [[textView rac_willDeallocSignal] subscribeCompleted:^{
+        NSLog(@"textView is safe");
+    }];
 }
 
 #pragma mark - Get

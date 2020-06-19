@@ -7,11 +7,13 @@
 
 @interface UIImageView (ObjcUI)
 
++ (UIImageView *(^)())objc_create;
+
 - (UIImageView *(^)(UIImage *image))objc_image;
 
 - (UIImageView *(^)(UIImage *highlightedImage))objc_highlightedImage;
 
-- (UIImageView *(^)(UIImageSymbolConfiguration *preferredSymbolConfiguration))objc_preferredSymbolConfiguration;
+- (UIImageView *(^)(UIImageSymbolConfiguration *preferredSymbolConfiguration))objc_preferredSymbolConfiguration API_AVAILABLE(ios(13.0),tvos(13.0),watchos(6.0));;
 
 - (UIImageView *(^)(BOOL highlighted))objc_highlighted;
 

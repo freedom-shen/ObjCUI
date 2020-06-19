@@ -50,7 +50,7 @@
 
 - (UITextField *(^)(BOOL (^)(UITextField *textFiled, NSRange range, NSString *replace)))objc_shouldChangeCharactersInRangeReplacementString;
 
-- (UITextField *(^)(BOOL (^)(UITextField *textFiled)))objc_textFieldDidChangeSelection;
+- (UITextField *(^)(BOOL (^)(UITextField *textFiled)))objc_textFieldDidChangeSelection API_AVAILABLE(ios(13.0), tvos(13.0));
 
 - (UITextField *(^)(BOOL (^)(UITextField *textFiled)))objc_textFieldShouldClear;
 

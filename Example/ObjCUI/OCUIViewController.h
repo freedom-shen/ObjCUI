@@ -6,7 +6,7 @@
 //  Copyright (c) 2020 沈晓敏. All rights reserved.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 @interface OCUIViewController : UIViewController
 

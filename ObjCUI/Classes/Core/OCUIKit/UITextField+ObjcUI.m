@@ -4,7 +4,7 @@
 
 #import <objc/runtime.h>
 #import "OCUIControlWrapper.h"
-#import "OCUITextFiledDelegateWarp.h"
+#import "OCUITextFiledDelegateWarpper.h"
 
 static const void *UITextFieldObjcUIEventKey = &UITextFieldObjcUIEventKey;
 static const void *UITextFieldObjcUIDelegateKey = &UITextFieldObjcUIDelegateKey;
@@ -202,10 +202,10 @@ static const void *UITextFieldObjcUIDelegateKey = &UITextFieldObjcUIDelegateKey;
 }
 
 
-- (OCUITextFiledDelegateWarp *)delegateBlockMap {
-    OCUITextFiledDelegateWarp *delegateWarp = objc_getAssociatedObject(self, UITextFieldObjcUIDelegateKey);
+- (OCUITextFiledDelegateWarpper *)delegateBlockMap {
+    OCUITextFiledDelegateWarpper *delegateWarp = objc_getAssociatedObject(self, UITextFieldObjcUIDelegateKey);
     if (!delegateWarp) {
-        delegateWarp = [[OCUITextFiledDelegateWarp alloc] init];
+        delegateWarp = [[OCUITextFiledDelegateWarpper alloc] init];
         self.delegate = delegateWarp;
         objc_setAssociatedObject(self, UITextFieldObjcUIDelegateKey, delegateWarp, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
