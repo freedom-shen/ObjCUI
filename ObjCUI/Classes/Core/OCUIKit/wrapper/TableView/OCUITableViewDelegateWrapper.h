@@ -57,6 +57,6 @@ static const OCUITableViewDelegateKey OCUITableViewDelegateWillPerformPreviewAct
 
 @interface OCUITableViewDelegateWrapper : NSObject <UITableViewDelegate>
 
-@property(nonatomic, strong, readonly) NSMutableDictionary <NSString *, id> *delegateMap;
+@property(nonatomic, strong, readonly) NSMutableDictionary <OCUITableViewDelegateKey, id> *delegateMap;
 
 @end

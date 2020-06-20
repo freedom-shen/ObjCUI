@@ -386,8 +386,8 @@ static const void *UITableViewObjcUIDropDelegateKey = &UITableViewObjcUIDropDele
 
 @implementation UITableView (ObjcUIDataSource)
 
-- (UITableView *(^)(NSInteger(^)(UITableView *tableView)))objc_numberOfRowsInSection {
-    return ^UITableView *(NSInteger (^pFunction)(UITableView *)) {
+- (UITableView *(^)(NSInteger(^)(UITableView *tableView, NSInteger section)))objc_numberOfRowsInSection {
+    return ^UITableView *(NSInteger (^pFunction)(UITableView *, NSInteger)) {
         self.dataSourceWrapper.delegateMap[OCUITableViewDataSourceNumberOfRowsInSectionKey] = pFunction;
         return self;
     };
@@ -822,6 +822,20 @@ static const void *UITableViewObjcUIDropDelegateKey = &UITableViewObjcUIDropDele
 
 @implementation UITableView (ObjcUIDataSourcePrefetching)
 
+- (UITableView *(^)(void (^)(UITableView *tableView, NSArray<NSIndexPath *> *indexPaths)))objc_prefetchRowsAtIndexPaths {
+    return ^UITableView *(void (^pFunction)(UITableView *, NSArray<NSIndexPath *> *)) {
+        self.prefetchDataSourceWrapper.delegateMap[OCUITableViewDelegatePrefetchRowsAtIndexPathsKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, NSArray<NSIndexPath *> *indexPaths)))objc_cancelPrefetchingForRowsAtIndexPaths {
+    return ^UITableView *(void (^pFunction)(UITableView *, NSArray<NSIndexPath *> *)) {
+        self.prefetchDataSourceWrapper.delegateMap[OCUITableViewDelegateCancelPrefetchingForRowsAtIndexPathsKey] = pFunction;
+        return self;
+    };
+}
+
 - (OCUITableViewPrefetchDataSourceWrapper *)prefetchDataSourceWrapper {
     OCUITableViewPrefetchDataSourceWrapper *sourceWrapper = objc_getAssociatedObject(self, UITableViewObjcUIPrefetchDataSourceKey);
     if (!sourceWrapper) {
@@ -836,6 +850,56 @@ static const void *UITableViewObjcUIDropDelegateKey = &UITableViewObjcUIDropDele
 
 @implementation UITableView (ObjcUIDragDelegate)
 
+
+- (UITableView *(^)(NSArray<UIDragItem *> *(^)(UITableView *tableView, id <UIDragSession> session, NSIndexPath *indexPath)))objc_itemsForBeginningDragSessionAtIndexPath {
+    return ^UITableView *(NSArray<UIDragItem *> *(^pFunction)(UITableView *, id <UIDragSession>, NSIndexPath *)) {
+        self.dragDelegateWrapper.delegateMap[OCUITableViewDelegateItemsForBeginningDragSessionAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(NSArray<UIDragItem *> *(^)(UITableView *tableView, id <UIDragSession> session, NSIndexPath *indexPath)))objc_itemsForAddingToDragSessionAtIndexPathPoint {
+    return ^UITableView *(NSArray<UIDragItem *> *(^pFunction)(UITableView *, id <UIDragSession>, NSIndexPath *)) {
+        self.dragDelegateWrapper.delegateMap[OCUITableViewDelegateItemsForAddingToDragSessionAtIndexPathPointKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(UIDragPreviewParameters *(^)(UITableView *tableView, NSIndexPath *indexPath)))objc_dragPreviewParametersForRowAtIndexPath {
+    return ^UITableView *(UIDragPreviewParameters *(^pFunction)(UITableView *, NSIndexPath *)) {
+        self.dragDelegateWrapper.delegateMap[OCUITableViewDelegateDragPreviewParametersForRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, id <UIDragSession> session)))objc_dragSessionWillBegin {
+    return ^UITableView *(void (^pFunction)(UITableView *, id <UIDragSession>)) {
+        self.dragDelegateWrapper.delegateMap[OCUITableViewDelegateDragSessionWillBeginKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, id <UIDragSession> session)))objc_dragSessionDidEnd {
+    return ^UITableView *(void (^pFunction)(UITableView *, id <UIDragSession>)) {
+        self.dragDelegateWrapper.delegateMap[OCUITableViewDelegateDragSessionDidEndKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(BOOL (^)(UITableView *tableView, id <UIDragSession> session)))objc_dragSessionAllowsMoveOperation {
+    return ^UITableView *(BOOL (^pFunction)(UITableView *, id <UIDragSession>)) {
+        self.dragDelegateWrapper.delegateMap[OCUITableViewDelegateDragSessionAllowsMoveOperationKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(BOOL (^)(UITableView *tableView, id <UIDragSession> session)))objc_dragSessionIsRestrictedToDraggingApplication {
+    return ^UITableView *(BOOL (^pFunction)(UITableView *, id <UIDragSession>)) {
+        self.dragDelegateWrapper.delegateMap[OCUITableViewDelegateDragSessionIsRestrictedToDraggingApplicationKey] = pFunction;
+        return self;
+    };
+}
+
 - (OCUITableViewDragDelegateWrapper *)dragDelegateWrapper {
     OCUITableViewDragDelegateWrapper *delegateWrapper = objc_getAssociatedObject(self, UITableViewObjcUIDragDelegateKey);
     if (!delegateWrapper) {
@@ -849,6 +913,56 @@ static const void *UITableViewObjcUIDropDelegateKey = &UITableViewObjcUIDropDele
 @end
 
 @implementation UITableView (ObjcUIDropDelegate)
+
+- (UITableView *(^)(void (^)(UITableView *tableView, id <UITableViewDropCoordinator> coordinator)))objc_performDropWithCoordinator {
+    return ^UITableView *(void (^pFunction)(UITableView *, id <UITableViewDropCoordinator>)) {
+        self.dropDelegateWrapper.delegateMap[OCUITableViewDropDelegatePerformDropWithCoordinatorKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, id <UIDropSession> coordinator)))objc_canHandleDropSession {
+    return ^UITableView *(void (^pFunction)(UITableView *, id <UIDropSession>)) {
+        self.dropDelegateWrapper.delegateMap[OCUITableViewDropDelegatePerformCanHandleDropSessionKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, id <UIDropSession> coordinator)))objc_dropSessionDidEnter {
+    return ^UITableView *(void (^pFunction)(UITableView *, id <UIDropSession>)) {
+        self.dropDelegateWrapper.delegateMap[OCUITableViewDropDelegatePerformDropSessionDidEnterKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, id <UIDropSession> coordinator, NSIndexPath *indexPath)))objc_dropSessionDidUpdate {
+    return ^UITableView *(void (^pFunction)(UITableView *, id <UIDropSession>, NSIndexPath *)) {
+        self.dropDelegateWrapper.delegateMap[OCUITableViewDropDelegatePerformDropSessionDidUpdateWithDestinationIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, id <UIDropSession> coordinator)))objc_dropSessionDidExit {
+    return ^UITableView *(void (^pFunction)(UITableView *, id <UIDropSession>)) {
+        self.dropDelegateWrapper.delegateMap[OCUITableViewDropDelegateDropSessionDidExitKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(void (^)(UITableView *tableView, id <UIDropSession> coordinator)))objc_dropSessionDidEnd {
+    return ^UITableView *(void (^pFunction)(UITableView *, id <UIDropSession>)) {
+        self.dropDelegateWrapper.delegateMap[OCUITableViewDropDelegateDropSessionDidEndKey] = pFunction;
+        return self;
+    };
+}
+
+- (UITableView *(^)(UIDragPreviewParameters *(^)(UITableView *tableView, id <UIDropSession> coordinator)))objc_dropPreviewParametersForRowAtIndexPath {
+    return ^UITableView *(UIDragPreviewParameters *(^pFunction)(UITableView *, id <UIDropSession>)) {
+        self.dropDelegateWrapper.delegateMap[OCUITableViewDropDelegateDropPreviewParametersForRowAtIndexPathKey] = pFunction;
+        return self;
+    };
+}
+
 
 - (OCUITableViewDropDelegateWrapper *)dropDelegateWrapper {
     OCUITableViewDropDelegateWrapper *delegateWrapper = objc_getAssociatedObject(self, UITableViewObjcUIDropDelegateKey);

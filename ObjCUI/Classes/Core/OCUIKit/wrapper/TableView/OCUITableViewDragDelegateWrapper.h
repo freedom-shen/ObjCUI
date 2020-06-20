@@ -4,9 +4,19 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NSString *OCUITableViewDragDelegateKey NS_EXTENSIBLE_STRING_ENUM;
+
+static const OCUITableViewDragDelegateKey OCUITableViewDelegateItemsForBeginningDragSessionAtIndexPathKey = @"OCUITableViewDelegateItemsForBeginningDragSessionAtIndexPathKey";
+static const OCUITableViewDragDelegateKey OCUITableViewDelegateItemsForAddingToDragSessionAtIndexPathPointKey = @"OCUITableViewDelegateItemsForAddingToDragSessionAtIndexPathPointKey";
+static const OCUITableViewDragDelegateKey OCUITableViewDelegateDragPreviewParametersForRowAtIndexPathKey = @"OCUITableViewDelegateDragPreviewParametersForRowAtIndexPathKey";
+static const OCUITableViewDragDelegateKey OCUITableViewDelegateDragSessionWillBeginKey = @"OCUITableViewDelegateDragSessionWillBeginKey";
+static const OCUITableViewDragDelegateKey OCUITableViewDelegateDragSessionDidEndKey = @"OCUITableViewDelegateDragSessionDidEndKey";
+static const OCUITableViewDragDelegateKey OCUITableViewDelegateDragSessionAllowsMoveOperationKey = @"OCUITableViewDelegateDragSessionAllowsMoveOperationKey";
+static const OCUITableViewDragDelegateKey OCUITableViewDelegateDragSessionIsRestrictedToDraggingApplicationKey = @"OCUITableViewDelegateDragSessionIsRestrictedToDraggingApplicationKey";
+
 
 @interface OCUITableViewDragDelegateWrapper : NSObject<UITableViewDragDelegate>
 
-@property(nonatomic, strong, readonly) NSMutableDictionary <NSString *, id> *delegateMap;
+@property(nonatomic, strong, readonly) NSMutableDictionary <OCUITableViewDragDelegateKey, id> *delegateMap;
 
 @end

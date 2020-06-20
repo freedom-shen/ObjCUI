@@ -25,6 +25,7 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		DC02C4626B45F1825AFBFC90 /* OCUIKitTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DC02CF95AD74B6EEDEAC17B9 /* OCUIKitTestVC.m */; };
+		DC02C929D694503D406A5708 /* OCUITableViewTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DC02CE094B490B663D56FF5D /* OCUITableViewTestVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +68,9 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C440C41C950C3E6731CF5CD3 /* ObjCUI.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ObjCUI.podspec; path = ../ObjCUI.podspec; sourceTree = "<group>"; };
 		CA035FE6D11F2849932BC119 /* Pods_ObjCUI_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ObjCUI_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC02C630094EF22AC8E613BF /* OCUITableViewTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUITableViewTestVC.h; sourceTree = "<group>"; };
 		DC02C7C27FEAC1770B264DA8 /* OCUIKitTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCUIKitTestVC.h; sourceTree = "<group>"; };
+		DC02CE094B490B663D56FF5D /* OCUITableViewTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUITableViewTestVC.m; sourceTree = "<group>"; };
 		DC02CF95AD74B6EEDEAC17B9 /* OCUIKitTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCUIKitTestVC.m; sourceTree = "<group>"; };
 		F339B89D58093B5E84F3F08B /* Pods-ObjCUI_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjCUI_Tests.debug.xcconfig"; path = "Target Support Files/Pods-ObjCUI_Tests/Pods-ObjCUI_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -205,6 +208,8 @@
 			children = (
 				DC02CF95AD74B6EEDEAC17B9 /* OCUIKitTestVC.m */,
 				DC02C7C27FEAC1770B264DA8 /* OCUIKitTestVC.h */,
+				DC02CE094B490B663D56FF5D /* OCUITableViewTestVC.m */,
+				DC02C630094EF22AC8E613BF /* OCUITableViewTestVC.h */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -388,6 +393,7 @@
 				6003F5A7195388D20070C39A /* OCUIViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				DC02C4626B45F1825AFBFC90 /* OCUIKitTestVC.m in Sources */,
+				DC02C929D694503D406A5708 /* OCUITableViewTestVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

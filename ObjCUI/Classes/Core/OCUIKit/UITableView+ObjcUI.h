@@ -114,7 +114,7 @@
 
 @interface UITableView (ObjcUIDataSource)
 
-- (UITableView *(^)(NSInteger(^)(UITableView *tableView)))objc_numberOfRowsInSection;
+- (UITableView *(^)(NSInteger(^)(UITableView *tableView, NSInteger section)))objc_numberOfRowsInSection;
 
 - (UITableView *(^)(UITableViewCell *(^)(UITableView *tableView, NSIndexPath *indexPath)))objc_cellForRowAtIndexPath;
 
@@ -241,12 +241,39 @@
 
 @interface UITableView (ObjcUIDataSourcePrefetching)
 
+- (UITableView *(^)(void (^)(UITableView *tableView, NSArray<NSIndexPath *> *indexPaths)))objc_prefetchRowsAtIndexPaths API_AVAILABLE(ios(10.0));
+
+- (UITableView *(^)(void (^)(UITableView *tableView, NSArray<NSIndexPath *> *indexPaths)))objc_cancelPrefetchingForRowsAtIndexPaths API_AVAILABLE(ios(10.0));
+
 @end
 
 @interface UITableView (ObjcUIDragDelegate)
 
+- (UITableView *(^)(NSArray<UIDragItem *> *(^)(UITableView *tableView, id <UIDragSession> session, NSIndexPath *indexPath)))objc_itemsForBeginningDragSessionAtIndexPath API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);;
+
+- (UITableView *(^)(NSArray<UIDragItem *> *(^)(UITableView *tableView, id <UIDragSession> session, NSIndexPath *indexPath)))objc_itemsForAddingToDragSessionAtIndexPathPoint API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);;
+
+- (UITableView *(^)(UIDragPreviewParameters *(^)(UITableView *tableView, NSIndexPath *indexPath)))objc_dragPreviewParametersForRowAtIndexPath API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);;
+
+- (UITableView *(^)(void (^)(UITableView *tableView, id <UIDragSession> session)))objc_dragSessionWillBegin API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);;
+
+- (UITableView *(^)(void (^)(UITableView *tableView, id <UIDragSession> session)))objc_dragSessionDidEnd API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);;
+
+- (UITableView *(^)(BOOL (^)(UITableView *tableView, id <UIDragSession> session)))objc_dragSessionAllowsMoveOperation API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);;
+
+- (UITableView *(^)(BOOL (^)(UITableView *tableView, id <UIDragSession> session)))objc_dragSessionIsRestrictedToDraggingApplication API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);;
+
+
 @end
 
 @interface UITableView (ObjcUIDropDelegate)
+
+- (UITableView *(^)(void (^)(UITableView *tableView, id <UITableViewDropCoordinator> coordinator)))objc_performDropWithCoordinator API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);
+- (UITableView *(^)(void (^)(UITableView *tableView, id <UIDropSession> coordinator)))objc_canHandleDropSession API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);
+- (UITableView *(^)(void (^)(UITableView *tableView, id <UIDropSession> coordinator)))objc_dropSessionDidEnter API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);
+- (UITableView *(^)(void (^)(UITableView *tableView, id <UIDropSession> coordinator, NSIndexPath *indexPath)))objc_dropSessionDidUpdate API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);
+- (UITableView *(^)(void (^)(UITableView *tableView, id <UIDropSession> coordinator)))objc_dropSessionDidExit API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);
+- (UITableView *(^)(void (^)(UITableView *tableView, id <UIDropSession> coordinator)))objc_dropSessionDidEnd API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);
+- (UITableView *(^)(UIDragPreviewParameters *(^)(UITableView *tableView, id <UIDropSession> coordinator)))objc_dropPreviewParametersForRowAtIndexPath API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);
 
 @end
