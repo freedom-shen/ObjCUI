@@ -3,10 +3,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OCUIViewConvert.h"
 
 @interface UITableView (ObjcUI)
 
-+ (UITableView *(^)())objc_create;
 
 + (UITableView *(^)(CGRect frame, UITableViewStyle style))objc_createBtFrame;
 
@@ -109,6 +109,8 @@
 - (UITableView *(^)(BOOL remembersLastFocusedIndexPath))objc_remembersLastFocusedIndexPath API_AVAILABLE(ios(9.0));
 
 - (UITableView *(^)(BOOL dragInteractionEnabled))objc_dragInteractionEnabled API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);
+
+OCUIViewChildHeaderCreate(UITableView)
 
 @end
 

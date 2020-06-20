@@ -14,7 +14,6 @@
 
 @interface OCUIKitTestVC ()
 
-
 @end
 
 @implementation OCUIKitTestVC
@@ -26,12 +25,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-
-
-
-
-
-
     UIButton *button = UIButton
             .objc_create()
             .objc_title(UIControlStateNormal, @"我来做个测试")
@@ -75,8 +68,7 @@
             .objc_textFieldShouldBeginEditing(^BOOL(UITextField *textField) {
                 NSLog(@"text should begin");
                 return YES;
-            })
-    ;
+            });
     [self.view addSubview:textField];
     [textField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(button.mas_bottom);

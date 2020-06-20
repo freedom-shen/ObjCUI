@@ -6,8 +6,6 @@
 
 @interface UITextField (ObjcUI)
 
-+ (UITextField *(^)())objc_create;
-
 - (UITextField *(^)(NSString *text))objc_text;
 
 - (UITextField *(^)(NSAttributedString *attributedText))objc_attributedText;
@@ -32,8 +30,6 @@
 
 - (UITextField *(^)(UIKeyboardType keyboardType))objc_keyBordType;
 
-- (UITextField *(^)(void(^)(UITextField *textFiled)))objc_maker;
-
 - (UITextField *(^)(UIControlEvents controlEvents, void(^)(UITextField *textField)))objc_action;
 
 #pragma mark - Delegate
@@ -55,5 +51,7 @@
 - (UITextField *(^)(BOOL (^)(UITextField *textFiled)))objc_textFieldShouldClear;
 
 - (UITextField *(^)(BOOL (^)(UITextField *textFiled)))objc_textFieldShouldReturn;
+
+OCUIViewChildHeaderCreate(UITextField)
 
 @end

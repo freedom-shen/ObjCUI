@@ -3,10 +3,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OCUIViewConvert.h"
 
 @interface UIButton (ObjcUI)
 
-+ (UIButton *(^)())objc_create;
 
 - (UIButton *(^)(UIControlState state, NSString *title))objc_title;
 
@@ -38,7 +38,7 @@
 
 - (UIButton *(^)(BOOL showsTouchWhenHighlighted))objc_showsTouchWhenHighlighted;
 
-- (UIButton *(^)(UIColor *tintColor))objc_tintColor;
 
-- (UIButton *(^)(void(^)(UIButton *button)))objc_maker;
+OCUIViewChildHeaderCreate(UIButton)
+
 @end

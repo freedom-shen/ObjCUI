@@ -3,10 +3,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OCUIViewConvert.h"
 
 @interface UILabel (ObjcUI)
-
-+ (UILabel *(^)())objc_create;
 
 - (UILabel *(^)(NSString *text))objc_text;
 
@@ -40,5 +39,6 @@
 
 - (UILabel *(^)(int))objc_numberOfLines;;
 
-- (UILabel *(^)(void(^)(UILabel *label)))objc_maker;
+OCUIViewChildHeaderCreate(UILabel)
+
 @end

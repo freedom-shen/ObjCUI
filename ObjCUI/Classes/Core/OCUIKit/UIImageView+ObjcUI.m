@@ -7,10 +7,10 @@
 
 @implementation UIImageView (ObjcUI)
 
-+ (UIImageView *(^)())objc_create {
-    return ^UIImageView * {
-        UIImageView *image = [[UIImageView alloc] init];
-        return image;
++ (UIImageView *(^)(UIImage *image))objc_createImage {
+    return ^UIImageView * (UIImage *image){
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        return imageView;
     };
 }
 

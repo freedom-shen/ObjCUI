@@ -3,10 +3,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OCUIViewConvert.h"
 
 @interface UIScrollView (ObjcUI)
-
-+ (UIScrollView *(^)())objc_create;
 
 - (UIScrollView *(^)(CGPoint contentOffset))objc_contentOffset;
 
@@ -80,8 +79,6 @@
 
 - (UIScrollView *(^)(UIRefreshControl *refreshControl))objc_refreshControl API_AVAILABLE(ios(10.0)) API_UNAVAILABLE(tvos);
 
-- (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_maker;
-
 #pragma mark - Delegate
 
 - (UIScrollView *(^)(void(^)(UIScrollView *scrollView)))objc_scrollViewDidScroll;
@@ -112,5 +109,6 @@
 
 - (UIScrollView *(^)(void (^)(UIScrollView *scrollView)))objc_scrollViewDidChangeAdjustedContentInset  API_AVAILABLE(ios(11.0), tvos(11.0));
 
+OCUIViewChildHeaderCreate(UIScrollView)
 
 @end

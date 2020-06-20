@@ -3,10 +3,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OCUIViewConvert.h"
 
 @interface UIImageView (ObjcUI)
 
-+ (UIImageView *(^)())objc_create;
++ (UIImageView *(^)(UIImage *image))objc_createImage;
 
 - (UIImageView *(^)(UIImage *image))objc_image;
 
@@ -24,14 +25,13 @@
 
 - (UIImageView *(^)(NSInteger animationRepeatCount))objc_animationRepeatCount;
 
-- (UIImageView *(^)(UIColor *tintColor))objc_tintColor;
-
 - (UIImageView *(^)(BOOL adjustsImageWhenAncestorFocused))objc_adjustsImageWhenAncestorFocused;
 
 - (UIImageView *(^)())objc_startAnimating;
 
 - (UIImageView *(^)())objc_stopAnimating;
 
-- (UIImageView *(^)(void(^)(UIImageView *imageView)))objc_maker;
+
+OCUIViewChildHeaderCreate(UIImageView)
 
 @end
