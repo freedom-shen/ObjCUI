@@ -39,6 +39,6 @@
 
 - (UILabel *(^)(int))objc_numberOfLines;;
 
-OCUIViewChildHeaderCreate(UILabel)
+OCUIViewChildHeaderCreate(UILabel);
 
 @end

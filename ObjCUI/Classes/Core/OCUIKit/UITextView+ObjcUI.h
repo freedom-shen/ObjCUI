@@ -52,5 +52,5 @@
 
 - (UITextView *(^)(BOOL(^)(UITextView *textView, NSTextAttachment *textAttachment, NSRange characterRange)))objc_shouldInteractWithTextAttachmentInRange API_DEPRECATED_WITH_REPLACEMENT("objc_shouldInteractWithTextAttachmentInRangeInteraction", ios(7.0, 10.0));
 
-OCUIViewChildHeaderCreate(UITextView)
+OCUIViewChildHeaderCreate(UITextView);
 @end

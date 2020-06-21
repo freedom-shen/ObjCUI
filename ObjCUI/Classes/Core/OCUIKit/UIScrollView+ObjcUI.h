@@ -109,6 +109,6 @@
 
 - (UIScrollView *(^)(void (^)(UIScrollView *scrollView)))objc_scrollViewDidChangeAdjustedContentInset  API_AVAILABLE(ios(11.0), tvos(11.0));
 
-OCUIViewChildHeaderCreate(UIScrollView)
+OCUIViewChildHeaderCreate(UIScrollView);
 
 @end

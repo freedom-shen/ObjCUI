@@ -4,6 +4,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OCUIViewConvert.h"
+#import "OCUIControlConvert.h"
 
 @interface UIButton (ObjcUI)
 
@@ -22,8 +23,6 @@
 
 - (UIButton *(^)(UIControlState state, NSAttributedString *attributedString))objc_attributedTitle;
 
-- (UIButton *(^)(UIControlEvents controlEvents, void(^)(UIButton *button)))objc_action;
-
 - (UIButton *(^)(UIEdgeInsets contentEdgeInsets))objc_contentEdgeInsets;
 
 - (UIButton *(^)(UIEdgeInsets titleEdgeInsets))objc_titleEdgeInsets;
@@ -39,6 +38,7 @@
 - (UIButton *(^)(BOOL showsTouchWhenHighlighted))objc_showsTouchWhenHighlighted;
 
 
-OCUIViewChildHeaderCreate(UIButton)
+OCUIViewChildHeaderCreate(UIButton);
+OCUIControlChildHeaderCreate(UIButton);
 
 @end

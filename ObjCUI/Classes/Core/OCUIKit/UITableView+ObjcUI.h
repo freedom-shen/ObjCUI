@@ -110,7 +110,7 @@
 
 - (UITableView *(^)(BOOL dragInteractionEnabled))objc_dragInteractionEnabled API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);
 
-OCUIViewChildHeaderCreate(UITableView)
+OCUIViewChildHeaderCreate(UITableView);
 
 @end
 

@@ -3,10 +3,8 @@
 //
 
 #import <objc/runtime.h>
-#import "OCUIControlWrapper.h"
 #import "OCUITextFiledDelegateWrapper.h"
 
-static const void *UITextFieldObjcUIEventKey = &UITextFieldObjcUIEventKey;
 static const void *UITextFieldObjcUIDelegateKey = &UITextFieldObjcUIDelegateKey;
 
 @implementation UITextField (ObjcUI)
@@ -105,17 +103,6 @@ static const void *UITextFieldObjcUIDelegateKey = &UITextFieldObjcUIDelegateKey;
     };
 }
 
-- (UITextField *(^)(UIControlEvents controlEvents, void(^)(UITextField *textFiled)))objc_action {
-    return ^UITextField *(UIControlEvents controlEvents, void (^pFunction)(UITextField *)) {
-        if (!self.eventMap[@(controlEvents)]) {
-            self.eventMap[@(controlEvents)] = [[OCUIControlWrapper alloc] initWithHandler:pFunction];
-        }
-        [self addTarget:self.eventMap[@(controlEvents)] action:@selector(didSelect:) forControlEvents:controlEvents];
-        return self;
-    };
-}
-
-
 - (UITextField *(^)(NSTextAlignment textAlignment))objc_textAlignment {
     return ^UITextField *(NSTextAlignment textAlignment) {
         self.textAlignment = textAlignment;
@@ -191,16 +178,6 @@ static const void *UITextFieldObjcUIDelegateKey = &UITextFieldObjcUIDelegateKey;
 
 
 #pragma mark - Get
-
-- (NSMutableDictionary *)eventMap {
-    NSMutableDictionary *eventMap = objc_getAssociatedObject(self, UITextFieldObjcUIEventKey);
-    if (!eventMap) {
-        eventMap = [NSMutableDictionary dictionary];
-        objc_setAssociatedObject(self, UITextFieldObjcUIEventKey, eventMap, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-    return eventMap;
-}
-
 
 - (OCUITextFiledDelegateWrapper *)delegateBlockMap {
     OCUITextFiledDelegateWrapper *delegateWarp = objc_getAssociatedObject(self, UITextFieldObjcUIDelegateKey);

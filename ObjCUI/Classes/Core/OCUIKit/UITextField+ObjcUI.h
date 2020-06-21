@@ -30,8 +30,6 @@
 
 - (UITextField *(^)(UIKeyboardType keyboardType))objc_keyBordType;
 
-- (UITextField *(^)(UIControlEvents controlEvents, void(^)(UITextField *textField)))objc_action;
-
 #pragma mark - Delegate
 
 - (UITextField *(^)(BOOL(^)(UITextField *textFiled)))objc_textFieldShouldBeginEditing;
@@ -52,6 +50,7 @@
 
 - (UITextField *(^)(BOOL (^)(UITextField *textFiled)))objc_textFieldShouldReturn;
 
-OCUIViewChildHeaderCreate(UITextField)
+OCUIViewChildHeaderCreate(UITextField);
+OCUIControlChildHeaderCreate(UITextField);
 
 @end

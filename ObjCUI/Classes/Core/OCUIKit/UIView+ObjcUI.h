@@ -8,6 +8,6 @@
 
 @interface UIView (ObjcUI)
 
-OCUIViewChildHeaderCreate(UIView)
+OCUIViewChildHeaderCreate(UIView);
 
 @end

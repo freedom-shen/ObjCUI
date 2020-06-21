@@ -28,7 +28,7 @@
     UIButton *button = UIButton
             .objc_create()
             .objc_title(UIControlStateNormal, @"我来做个测试")
-            .objc_action(UIControlEventTouchUpInside, ^(UIButton *button) {
+            .objc_actionControl(UIControlEventTouchUpInside, ^(UIButton *button) {
                 NSLog(@"点击了按钮");
             });
 //    UIButton *button = [[UIButton alloc] init];
@@ -62,7 +62,7 @@
     UITextField *textField = UITextField.objc_create()
             .objc_text(@"测试数据")
             .objc_textColor([UIColor redColor])
-            .objc_action(UIControlEventEditingChanged, ^(UITextField *textField) {
+            .objc_actionControl(UIControlEventEditingChanged, ^(UITextField *textField) {
                 NSLog(@"text did change %@", textField.text);
             })
             .objc_textFieldShouldBeginEditing(^BOOL(UITextField *textField) {

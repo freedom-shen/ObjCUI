@@ -6,7 +6,7 @@
 #import "UIButton+ObjcUI.h"
 #import "OCUIControlWrapper.h"
 
-static const void *UIButtonObjcUIEventKey = &UIButtonObjcUIEventKey;
+
 
 
 @implementation UIButton (ObjcUI)
@@ -63,16 +63,6 @@ static const void *UIButtonObjcUIEventKey = &UIButtonObjcUIEventKey;
 - (UIButton *(^)(UIControlState state, NSAttributedString *attributedString))objc_attributedTitle {
     return ^UIButton *(UIControlState state, NSAttributedString *attributedString) {
         [self setAttributedTitle:attributedString forState:state];
-        return self;
-    };
-}
-
-- (UIButton *(^)(UIControlEvents controlEvents, void(^)(UIButton *button)))objc_action {
-    return ^UIButton *(UIControlEvents controlEvents, void (^pFunction)(UIButton *)) {
-        if (!self.eventMap[@(controlEvents)]) {
-            self.eventMap[@(controlEvents)] = [[OCUIControlWrapper alloc] initWithHandler:pFunction];
-        }
-        [self addTarget:self.eventMap[@(controlEvents)] action:@selector(didSelect:) forControlEvents:controlEvents];
         return self;
     };
 }
@@ -141,17 +131,6 @@ static const void *UIButtonObjcUIEventKey = &UIButtonObjcUIEventKey;
         }
         return self;
     };
-}
-
-#pragma mark - Get
-
-- (NSMutableDictionary *)eventMap {
-    NSMutableDictionary *eventMap = objc_getAssociatedObject(self, UIButtonObjcUIEventKey);
-    if (!eventMap) {
-        eventMap = [NSMutableDictionary dictionary];
-        objc_setAssociatedObject(self, UIButtonObjcUIEventKey, eventMap, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-    return eventMap;
 }
 
 @end

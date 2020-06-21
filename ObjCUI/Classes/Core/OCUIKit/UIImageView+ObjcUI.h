@@ -32,6 +32,6 @@
 - (UIImageView *(^)())objc_stopAnimating;
 
 
-OCUIViewChildHeaderCreate(UIImageView)
+OCUIViewChildHeaderCreate(UIImageView);
 
 @end

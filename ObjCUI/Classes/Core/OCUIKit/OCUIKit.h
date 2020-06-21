@@ -11,3 +11,4 @@
 #import "UITableView+ObjcUI.h"
 #import "UITableViewCell+ObjcUI.h"
 #import "UIView+ObjcUI.h"
+#import "UIControl+ObjcUI.h"
