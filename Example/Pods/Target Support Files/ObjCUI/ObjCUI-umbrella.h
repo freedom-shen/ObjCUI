@@ -11,6 +11,7 @@
 #endif
 
 #import "ObjCUI.h"
+#import "ObjCUI.h"
 #import "OCInterface.h"
 #import "OCUIDefine.h"
 #import "OCUIControlConvert.h"
@@ -23,6 +24,7 @@
 #import "UILabel+ObjcUI.h"
 #import "UIPickerView+ObjcUI.h"
 #import "UIScrollView+ObjcUI.h"
+#import "UISlider+ObjcUI.h"
 #import "UITableView+ObjcUI.h"
 #import "UITableViewCell+ObjcUI.h"
 #import "UITextField+ObjcUI.h"
@@ -33,6 +35,7 @@
 #import "OCUITextFiledDelegateWrapper.h"
 #import "OCUITextViewDelegateWrapper.h"
 #import "OCUIPickerViewDataSourceWrapper.h"
+#import "OCUIPickerViewDelegateWrapper.h"
 #import "OCUITableViewDataSourceWrapper.h"
 #import "OCUITableViewDelegateWrapper.h"
 #import "OCUITableViewDragDelegateWrapper.h"
