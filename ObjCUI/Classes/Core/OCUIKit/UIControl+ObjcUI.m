@@ -10,6 +10,13 @@ static const void *UIControlObjcUIEventKey = &UIControlObjcUIEventKey;
 
 @implementation UIControl (ObjcUI)
 
++ (UIControl *(^)())objc_create {
+    return ^UIControl * {
+        UIControl *button = [[UIControl alloc] init];
+        return button;
+    };
+}
+
 - (UIControl *(^)(BOOL enabled))objc_enabled {
     return ^UIControl *(BOOL enabled) {
         self.enabled = enabled;

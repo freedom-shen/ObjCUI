@@ -31,10 +31,8 @@
             .objc_actionControl(UIControlEventTouchUpInside, ^(UIButton *button) {
                 NSLog(@"点击了按钮");
             });
-//    UIButton *button = [[UIButton alloc] init];
     button.backgroundColor = [UIColor redColor];
     [self.view addSubview:button];
-
 
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.mas_equalTo(100);

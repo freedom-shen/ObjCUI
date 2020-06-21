@@ -243,6 +243,8 @@
 		D84202B886E0ABE8C743A3F6E7FCEFA8 /* RACStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4429DF8BE2EBF0931018FEEFE8E01EAC /* RACStream.m */; };
 		DA2DF4C54D6C21E70E730DF2FE2B2095 /* RACScheduler.h in Headers */ = {isa = PBXBuildFile; fileRef = A986DF3061355DB51DDF1AD84B05FF17 /* RACScheduler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DADBA695D4FAC5EBD674FA04C33C1350 /* RACSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D10892C5E537B03B117B2B5B17507E7 /* RACSequence.m */; };
+		DC02CB51EBCFB5D2D410BE1A /* UIDatePicker+ObjcUI.h in Headers */ = {isa = PBXBuildFile; fileRef = DC02CE1876C821D751ACE0A7 /* UIDatePicker+ObjcUI.h */; };
+		DC02CF40D98DD80963EC188F /* UIDatePicker+ObjcUI.m in Sources */ = {isa = PBXBuildFile; fileRef = DC02C8856983894504D16D49 /* UIDatePicker+ObjcUI.m */; };
 		DDDDEAA31A9E1F29C248AF42EC54F8B1 /* NSString+RACSequenceAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 20C182F0030CB89E7D6BD11530D6907A /* NSString+RACSequenceAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DF0D53A4DFB5F31DF139AD00B122C3FC /* OCUITableViewDataSourceWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 8468FBA6743C28C9D013DAAB26383797 /* OCUITableViewDataSourceWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DF1672563F4A0450441428E1F8D17747 /* NSString+RACSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 852402B3400D4793307DFF545A71CA58 /* NSString+RACSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -588,6 +590,8 @@
 		D8B35B3FBD0397654C112EC0AC7EAFE4 /* UIControl+ObjcUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIControl+ObjcUI.m"; sourceTree = "<group>"; };
 		DB8C87C0DCE9584DA0236A0D7CB3142A /* Pods-ObjCUI_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ObjCUI_Example.release.xcconfig"; sourceTree = "<group>"; };
 		DBDA46D8327D6C19477618A52B5A04D2 /* NSObject+RACPropertySubscribing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+RACPropertySubscribing.h"; path = "ReactiveObjC/NSObject+RACPropertySubscribing.h"; sourceTree = "<group>"; };
+		DC02C8856983894504D16D49 /* UIDatePicker+ObjcUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDatePicker+ObjcUI.m"; sourceTree = "<group>"; };
+		DC02CE1876C821D751ACE0A7 /* UIDatePicker+ObjcUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDatePicker+ObjcUI.h"; sourceTree = "<group>"; };
 		DC9BE892EB81392FF93A8CCB40D3F824 /* Masonry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Masonry.release.xcconfig; sourceTree = "<group>"; };
 		DCBAC4B43EB3192DABC912EFEC67BFC2 /* UIControl+ObjcUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIControl+ObjcUI.h"; sourceTree = "<group>"; };
 		DE8FEB0FAA4AF326063985C450E51BD0 /* RACTupleSequence.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACTupleSequence.m; path = ReactiveObjC/RACTupleSequence.m; sourceTree = "<group>"; };
@@ -731,6 +735,8 @@
 				A2F15FB137D2BD265D137D9917715432 /* UIView+ObjcUI.h */,
 				266268E7AD781A6BEF0873A84F2DB04C /* UIView+ObjcUI.m */,
 				440B23DC59FDDBC54BC67A8E291BD76E /* wrapper */,
+				DC02C8856983894504D16D49 /* UIDatePicker+ObjcUI.m */,
+				DC02CE1876C821D751ACE0A7 /* UIDatePicker+ObjcUI.h */,
 			);
 			name = OCUIKit;
 			path = ObjCUI/Classes/Core/OCUIKit;
@@ -1327,6 +1333,7 @@
 				B6310587FB9CBCA4424429465B515A92 /* UITextField+ObjcUI.h in Headers */,
 				C8527716DFC6040A65370368392FB67D /* UITextView+ObjcUI.h in Headers */,
 				A750B5DE9BC1AC535B1B2063B65D4369 /* UIView+ObjcUI.h in Headers */,
+				DC02CB51EBCFB5D2D410BE1A /* UIDatePicker+ObjcUI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1654,6 +1661,7 @@
 				5131CB1F4329ECA762E1D7EB6764E918 /* UITextField+ObjcUI.m in Sources */,
 				091E2D30AC8C5ED32DD79C792F577655 /* UITextView+ObjcUI.m in Sources */,
 				C11D5D5CAC9E51990AAB87BE655BEE97 /* UIView+ObjcUI.m in Sources */,
+				DC02CF40D98DD80963EC188F /* UIDatePicker+ObjcUI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
