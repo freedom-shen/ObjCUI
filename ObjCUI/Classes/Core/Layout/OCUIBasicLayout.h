@@ -3,7 +3,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OCUILayoutInterface.h"
 
 
-@interface OCUIBasicLayout : NSObject
+@interface OCUIBasicLayout : NSObject <OCUILayoutInterface>
+
+
+- (void)addSubLayout:(OCUIBasicLayout *)basicLayout;
+
 @end

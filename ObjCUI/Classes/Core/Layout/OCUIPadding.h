@@ -3,11 +3,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OCUILayoutInterface.h"
+#import "OCUIBasicLayout.h"
 
 
-@interface OCUIPadding : NSObject
+@interface OCUIPadding : OCUIBasicLayout
 
-+ (OCUIPadding *(^)())objc_create;
++ (OCUIPadding *(^)(UIView *view))objc_create;
 
 - (OCUIPadding *(^)(CGFloat left))objc_left;
 
@@ -17,7 +19,6 @@
 
 - (OCUIPadding *(^)(CGFloat bottom))objc_bottom;
 
-- (OCUIPadding *(^)(UIView *childView))objc_childView;
-
+- (OCUIPadding *(^)(id <OCUILayoutInterface> child))objc_child;
 
 @end

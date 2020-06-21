@@ -3,7 +3,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OCUIBasicLayout.h"
 
 
-@interface OCUIRow : NSObject
+@interface OCUIRow : OCUIBasicLayout
+
++ (OCUIRow *(^)(UIView *view))objc_create;
+
+- (OCUIRow *(^)(NSArray <OCUILayoutInterface> *children))objc_children;
+
 @end

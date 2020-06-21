@@ -3,7 +3,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OCUILayoutInterface.h"
+#import "OCUIBasicLayout.h"
 
 
-@interface OCUIStack : NSObject
+@interface OCUIStack : OCUIBasicLayout
+
++ (OCUIStack *(^)(UIView *view))objc_create;
+
+- (OCUIStack *(^)(NSArray <OCUILayoutInterface> *children))objc_children;
+
 @end

@@ -5,46 +5,54 @@
 #import "OCUIPadding.h"
 
 @interface OCUIPadding ()
+
+@property(nonatomic, weak) UIView *view;
+
 @end
 
 @implementation OCUIPadding
 
-+ (OCUIPadding *(^)())objc_create {
-    return ^OCUIPadding * {
+
++ (OCUIPadding *(^)(UIView *view))objc_create {
+    return ^OCUIPadding *(UIView *view) {
         OCUIPadding *padding = [[OCUIPadding alloc] init];
+        padding.view = view;
         return padding;
     };
 }
 
 - (OCUIPadding *(^)(CGFloat left))objc_left {
     return ^OCUIPadding *(CGFloat left) {
-        return nil;
+        self.ocui_layoutMap[@(OCUILayoutLeftType)] = @(left);
+        return self;
     };
 }
 
 - (OCUIPadding *(^)(CGFloat right))objc_right {
     return ^OCUIPadding *(CGFloat right) {
-        return nil;
+        self.ocui_layoutMap[@(OCUILayoutRightType)] = @(right);
+        return self;
     };
 }
 
 - (OCUIPadding *(^)(CGFloat top))objc_top {
     return ^OCUIPadding *(CGFloat top) {
-        return nil;
+        self.ocui_layoutMap[@(OCUILayoutTopType)] = @(top);
+        return self;
     };
 }
 
 - (OCUIPadding *(^)(CGFloat bottom))objc_bottom {
     return ^OCUIPadding *(CGFloat bottom) {
-        return nil;
+        self.ocui_layoutMap[@(OCUILayoutBottomType)] = @(bottom);
+        return self;
     };
 }
 
-- (OCUIPadding *(^)(UIView *childView))objc_childView {
-    return ^OCUIPadding *(UIView *childView) {
-        return nil;
+- (OCUIPadding *(^)(id <OCUILayoutInterface> child))objc_child {
+    return ^OCUIPadding *(id <OCUILayoutInterface> child) {
+        return self;
     };
 }
-
 
 @end

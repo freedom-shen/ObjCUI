@@ -3,7 +3,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OCUILayoutInterface.h"
+#import "OCUIBasicLayout.h"
 
 
-@interface OCUIAspectRatio : NSObject
+@interface OCUIAspectRatio : OCUIBasicLayout
+
++ (OCUIAspectRatio *(^)(UIView *view))objc_create;
+
+// width / height
+- (OCUIAspectRatio *(^)(double ratio))objc_ratio;
+
 @end
