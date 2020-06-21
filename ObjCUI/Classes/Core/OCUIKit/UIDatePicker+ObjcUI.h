@@ -2,7 +2,6 @@
 // Created by freedom on 2020/6/21.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "OCUIControlConvert.h"
 #import "OCUIViewConvert.h"

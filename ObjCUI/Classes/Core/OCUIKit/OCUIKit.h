@@ -12,3 +12,5 @@
 #import "UITableViewCell+ObjcUI.h"
 #import "UIView+ObjcUI.h"
 #import "UIControl+ObjcUI.h"
+#import "UIPickerView+ObjcUI.h"
+#import "UISlider+ObjcUI.h"
