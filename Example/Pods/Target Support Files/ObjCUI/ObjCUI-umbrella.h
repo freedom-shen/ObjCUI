@@ -22,7 +22,6 @@
 #import "OCUIStack.h"
 #import "UIView+Layout.h"
 #import "ObjCUI.h"
-#import "OCUIDefine.h"
 #import "OCUIControlConvert.h"
 #import "OCUIKit.h"
 #import "OCUIViewConvert.h"
@@ -50,6 +49,7 @@
 #import "OCUITableViewDragDelegateWrapper.h"
 #import "OCUITableViewDropDelegateWrapper.h"
 #import "OCUITableViewPrefetchDataSourceWrapper.h"
+#import "OCUILayoutDefine.h"
 
 FOUNDATION_EXPORT double ObjCUIVersionNumber;
 FOUNDATION_EXPORT const unsigned char ObjCUIVersionString[];
