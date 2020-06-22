@@ -3,7 +3,6 @@
 //
 
 #import "OCUISizeBox.h"
-#import "../../../../../../../Library/Caches/AppCode2019.2/DerivedData/ObjCUI-dapjkxbffwjdxxfmubrbjlgedhob/Build/Products/Debug-iphonesimulator/ObjCUI/ObjCUI.framework/Headers/OCUILayoutEnum.h"
 
 
 @implementation OCUISizeBox
