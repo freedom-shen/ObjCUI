@@ -2,7 +2,7 @@
 // Created by freedom on 2020/6/21.
 //
 
-#import <Masonry/Masonry-umbrella.h>
+#import <Masonry/Masonry.h>
 #import "OCUIColumn.h"
 #import "OCUILayoutHelper.h"
 
