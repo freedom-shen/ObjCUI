@@ -11,6 +11,6 @@
 
 + (OCUIStack *(^)(UIView *view))objc_create;
 
-- (OCUIStack *(^)(NSArray <OCUILayoutInterface> *children))objc_children;
+- (OCUIStack *(^)(NSArray <id<OCUILayoutInterface>> *children))objc_children;
 
 @end

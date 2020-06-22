@@ -9,6 +9,8 @@
 @class OCUIPadding;
 @class OCUISizeBox;
 @class OCUICenter;
+@class OCUIColumn;
+@class OCUIRow;
 
 @interface UIView (Layout) <OCUILayoutInterface>
 
@@ -16,6 +18,8 @@
 - (OCUISizeBox *)objc_convertSizeBox;
 - (OCUICenter *)objc_convertCenter;
 
-//@property(nonatomic, strong, readonly) MASConstraintMaker *constraintMaker;
+- (OCUIColumn *)objc_convertColumn;
+- (OCUIRow *)objc_convertRow;
+
 
 @end

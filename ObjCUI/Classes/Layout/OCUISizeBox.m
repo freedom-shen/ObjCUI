@@ -11,6 +11,7 @@
 + (OCUISizeBox *(^)(UIView *view))objc_create {
     return ^OCUISizeBox *(UIView *view) {
         OCUISizeBox *sizeBox = [[OCUISizeBox alloc] init];
+        sizeBox.entityView = view;
         return sizeBox;
     };
 }

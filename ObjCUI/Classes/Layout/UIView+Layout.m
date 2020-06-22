@@ -7,6 +7,8 @@
 #import "OCUIPadding.h"
 #import "OCUISizeBox.h"
 #import "OCUICenter.h"
+#import "OCUIColumn.h"
+#import "OCUIRow.h"
 
 static const void *UIViewObjcLayoutInterfaceKey = &UIViewObjcLayoutInterfaceKey;
 static const void *UIViewObjcLayoutMasonryKey = &UIViewObjcLayoutMasonryKey;
@@ -25,16 +27,23 @@ static const void *UIViewObjcLayoutMasonryKey = &UIViewObjcLayoutMasonryKey;
     return OCUICenter.objc_create(self);
 }
 
-
-- (MASConstraintMaker *)constraintMaker {
-    MASConstraintMaker *constraintMaker = objc_getAssociatedObject(self, UIViewObjcLayoutMasonryKey);
-    if (!constraintMaker) {
-        constraintMaker = [[MASConstraintMaker alloc] initWithView:self];
-        self.translatesAutoresizingMaskIntoConstraints = NO;
-        objc_setAssociatedObject(self, UIViewObjcLayoutInterfaceKey, constraintMaker, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-    return constraintMaker;
+- (OCUIColumn *)objc_convertColumn {
+    return OCUIColumn.objc_create(self);
 }
+
+- (OCUIRow *)objc_convertRow {
+    return OCUIRow.objc_create(self);
+}
+
+//- (MASConstraintMaker *)constraintMaker {
+//    MASConstraintMaker *constraintMaker = objc_getAssociatedObject(self, UIViewObjcLayoutMasonryKey);
+//    if (!constraintMaker) {
+//        constraintMaker = [[MASConstraintMaker alloc] initWithView:self];
+//        self.translatesAutoresizingMaskIntoConstraints = NO;
+//        objc_setAssociatedObject(self, UIViewObjcLayoutInterfaceKey, constraintMaker, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+//    }
+//    return constraintMaker;
+//}
 
 #pragma mark - Interface
 

@@ -10,6 +10,6 @@
 
 + (OCUIRow *(^)(UIView *view))objc_create;
 
-- (OCUIRow *(^)(NSArray <OCUILayoutInterface> *children))objc_children;
+- (OCUIRow *(^)(NSArray <id<OCUILayoutInterface>> *children))objc_children;
 
 @end
