@@ -29,6 +29,9 @@
         if (data.containerType == OCUIContainerEntityType) {
             UIView *view = (id) data;
             [self.entityView addSubview:view];
+            [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.top.mas_equalTo(0);
+            }];
         } else {
             OCUIBasicLayout *basicLayout = data;
             [self.entityView addSubview:basicLayout.entityView];
@@ -40,7 +43,17 @@
 - (void)_layoutWithLayout:(OCUIBasicLayout *)layout {
     [self.entityView addSubview:layout.entityView];
     [layout.entityView mas_makeConstraints:^(MASConstraintMaker *make) {
-        [OCUILayoutHelper autoLayoutWithMap:layout.ocui_layoutMap maker:make superView:self.entityView];
+        if (layout.ocui_layoutMap.allKeys.count == 0) {
+            make.left.top.mas_equalTo(0);
+            return;
+        }
+        [OCUILayoutHelper autoLayoutWithMap:layout.ocui_layoutMap maker:make superView:self.entityView rewriteType:[NSSet setWithArray:@[@(OCUILayoutTopType), @(OCUILayoutLeftType)]]
+                                      maker:^(MASConstraintMaker *maker) {
+                                          float leftMargin = [layout.ocui_layoutMap[@(OCUILayoutLeftType)] floatValue];
+                                          maker.left.mas_equalTo(leftMargin);
+                                          float topMargin = [layout.ocui_layoutMap[@(OCUILayoutTopType)] floatValue];
+                                          maker.top.mas_equalTo(topMargin);
+                                      }];
     }];
 }
 

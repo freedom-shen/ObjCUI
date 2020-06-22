@@ -22,6 +22,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
 //    [self _column];
     [self _row];
+//    [self _stack];
 }
 
 - (void)_padding {
@@ -63,12 +64,21 @@
             .objc_height(100).objc_child(
                     UIView.objc_create().objc_backgroundColor([UIColor redColor]).objc_convertRow
                             .objc_children(@[
-                                    UILabel.objc_create().objc_text(@"111").objc_textColor([UIColor whiteColor]).objc_convertCenter.objc_width(200),
+                                    UILabel.objc_create().objc_text(@"111").objc_textColor([UIColor whiteColor]).objc_convertSizeBox.objc_width(200),
                                     UILabel.objc_create().objc_text(@"222"),
                                     UILabel.objc_create().objc_text(@"333"),
                             ]).entityView
             );
 
+}
+
+- (void)_stack {
+    self.view.objc_convertStack.objc_children(@[
+                    UILabel.objc_create().objc_text(@"111"),
+                    UILabel.objc_create().objc_text(@"222"),
+                    UILabel.objc_create().objc_text(@"333"),
+            ]
+    );
 }
 
 @end

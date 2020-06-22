@@ -11,15 +11,20 @@
 @class OCUICenter;
 @class OCUIColumn;
 @class OCUIRow;
+@class OCUIStack;
 
 @interface UIView (Layout) <OCUILayoutInterface>
 
 - (OCUIPadding *)objc_convertPadding;
+
 - (OCUISizeBox *)objc_convertSizeBox;
+
 - (OCUICenter *)objc_convertCenter;
 
 - (OCUIColumn *)objc_convertColumn;
+
 - (OCUIRow *)objc_convertRow;
 
+- (OCUIStack *)objc_convertStack;
 
 @end

@@ -9,6 +9,7 @@
 #import "OCUICenter.h"
 #import "OCUIColumn.h"
 #import "OCUIRow.h"
+#import "OCUIStack.h"
 
 static const void *UIViewObjcLayoutInterfaceKey = &UIViewObjcLayoutInterfaceKey;
 static const void *UIViewObjcLayoutMasonryKey = &UIViewObjcLayoutMasonryKey;
@@ -33,6 +34,10 @@ static const void *UIViewObjcLayoutMasonryKey = &UIViewObjcLayoutMasonryKey;
 
 - (OCUIRow *)objc_convertRow {
     return OCUIRow.objc_create(self);
+}
+
+- (OCUIStack *)objc_convertStack {
+    return OCUIStack.objc_create(self);
 }
 
 //- (MASConstraintMaker *)constraintMaker {

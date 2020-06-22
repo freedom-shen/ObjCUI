@@ -65,6 +65,7 @@
                                           } else {
                                               maker.top.mas_equalTo(beforeView.mas_bottom).offset(topMargin + beforeBottom);
                                           }
+                                          make.left.right.mas_equalTo(0);
                                       }];
     }];
 }

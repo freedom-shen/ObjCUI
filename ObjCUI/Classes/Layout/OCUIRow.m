@@ -56,14 +56,15 @@
                        layout:(OCUIBasicLayout *)layout {
     [self.entityView addSubview:layout.entityView];
     [layout.entityView mas_makeConstraints:^(MASConstraintMaker *make) {
-        [OCUILayoutHelper autoLayoutWithMap:layout.ocui_layoutMap maker:make superView:self.entityView rewriteType:[NSSet setWithArray:@[@(OCUILayoutTopType)]]
+        [OCUILayoutHelper autoLayoutWithMap:layout.ocui_layoutMap maker:make superView:self.entityView rewriteType:[NSSet setWithArray:@[@(OCUILayoutLeftType)]]
                                       maker:^(MASConstraintMaker *maker) {
                                           float leftMargin = [layout.ocui_layoutMap[@(OCUILayoutLeftType)] floatValue];
                                           if (!beforeView) {
-                                              maker.top.mas_equalTo(leftMargin);
+                                              maker.left.mas_equalTo(leftMargin);
                                           } else {
-                                              maker.top.mas_equalTo(beforeView.mas_bottom).offset(leftMargin + beforeRight);
+                                              maker.left.mas_equalTo(beforeView.mas_right).offset(leftMargin + beforeRight);
                                           }
+                                          make.top.bottom.mas_equalTo(0);
                                       }];
     }];
 }
