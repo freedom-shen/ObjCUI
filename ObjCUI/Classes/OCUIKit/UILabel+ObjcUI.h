@@ -3,7 +3,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OCUIViewConvert.h"
+#import "OCUIKitDefine.h"
 
 @interface UILabel (ObjcUI)
 

@@ -3,7 +3,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OCUIViewConvert.h"
+#import "OCUIKitDefine.h"
 
 @interface UIPickerView (ObjcUI)
 

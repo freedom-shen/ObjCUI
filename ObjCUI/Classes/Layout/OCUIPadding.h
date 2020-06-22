@@ -5,11 +5,12 @@
 #import <Foundation/Foundation.h>
 #import "OCUILayoutInterface.h"
 #import "OCUIBasicLayout.h"
+#import "OCUISizeBox.h"
 
 
-@interface OCUIPadding : OCUIBasicLayout
+@interface OCUIPadding : OCUISizeBox
 
-+ (OCUIPadding *(^)(UIView *view))objc_create;
+//+ (OCUIPadding *(^)(UIView *view))objc_create;
 
 - (OCUIPadding *(^)(CGFloat left))objc_left;
 
@@ -19,6 +20,8 @@
 
 - (OCUIPadding *(^)(CGFloat bottom))objc_bottom;
 
-- (OCUIPadding *(^)(id <OCUILayoutInterface> child))objc_child;
+//- (OCUIPadding *(^)(UIView *child))objc_child;
+
+OCUISizeBoxChildHeaderCreate(OCUIPadding);
 
 @end

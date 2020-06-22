@@ -3,11 +3,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OCUIViewConvert.h"
-#import "OCUIControlConvert.h"
+#import "OCUIKitDefine.h"
 
 @interface UIButton (ObjcUI)
-
 
 - (UIButton *(^)(UIControlState state, NSString *title))objc_title;
 

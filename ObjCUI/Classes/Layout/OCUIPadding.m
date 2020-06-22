@@ -6,17 +6,14 @@
 
 @interface OCUIPadding ()
 
-@property(nonatomic, weak) UIView *view;
-
 @end
 
 @implementation OCUIPadding
 
-
 + (OCUIPadding *(^)(UIView *view))objc_create {
     return ^OCUIPadding *(UIView *view) {
         OCUIPadding *padding = [[OCUIPadding alloc] init];
-        padding.view = view;
+        padding.entityView = view;
         return padding;
     };
 }
@@ -49,8 +46,10 @@
     };
 }
 
-- (OCUIPadding *(^)(id <OCUILayoutInterface> child))objc_child {
-    return ^OCUIPadding *(id <OCUILayoutInterface> child) {
+- (OCUIPadding *(^)(UIView *child))objc_child {
+    return ^OCUIPadding *(UIView *child) {
+        self.childView = child;
+        [self objc_layout];
         return self;
     };
 }

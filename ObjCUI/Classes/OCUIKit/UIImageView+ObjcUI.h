@@ -3,7 +3,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OCUIViewConvert.h"
+#import "OCUIKitDefine.h"
 
 @interface UIImageView (ObjcUI)
 
@@ -30,7 +30,6 @@
 - (UIImageView *(^)())objc_startAnimating;
 
 - (UIImageView *(^)())objc_stopAnimating;
-
 
 OCUIViewChildHeaderCreate(UIImageView);
 

@@ -4,8 +4,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "OCUIViewConvert.h"
-#import "OCUIControlConvert.h"
+#import "OCUIKitDefine.h"
 
 @interface UIControl (ObjcUI)
 

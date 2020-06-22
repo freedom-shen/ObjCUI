@@ -5,15 +5,14 @@
 #import <Foundation/Foundation.h>
 #import "OCUILayoutInterface.h"
 #import "OCUIBasicLayout.h"
+#import "OCUISizeBox.h"
 
 
-@interface OCUICenter : OCUIBasicLayout
+@interface OCUICenter : OCUISizeBox
 
-+ (OCUICenter *(^)(UIView *view))objc_create;
 
 - (OCUICenter *(^)(OCUICenterAlignType alignType))objc_alignType;
 
-- (OCUICenter *(^)(id <OCUILayoutInterface> child))objc_child;
-
+OCUISizeBoxChildHeaderCreate(OCUICenter);
 
 @end

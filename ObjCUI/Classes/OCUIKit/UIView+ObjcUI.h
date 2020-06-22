@@ -4,7 +4,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "OCUIViewConvert.h"
+#import "OCUIKitDefine.h"
 
 @interface UIView (ObjcUI)
 

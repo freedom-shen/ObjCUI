@@ -23,5 +23,7 @@ typedef NS_ENUM(NSUInteger, OCUILayoutType) {
     OCUILayoutWidthType,
     OCUILayoutHeightType,
 
-    OCUILayoutWidthHeightRatioType,
+//    OCUILayoutWidthHeightRatioType,
+    OCUILayoutWidthRatioType,
+    OCUILayoutHeightRatioType,
 };

@@ -10,6 +10,7 @@
 + (OCUICenter *(^)(UIView *view))objc_create {
     return ^OCUICenter *(UIView *view) {
         OCUICenter *center = [[OCUICenter alloc] init];
+        center.entityView = view;
         center.ocui_layoutMap[@(OCUILayoutCenterType)] = @(OCUICenterAlignBothType);
         return center;
     };
@@ -23,11 +24,12 @@
 }
 
 
-- (OCUICenter *(^)(id <OCUILayoutInterface> child))objc_child {
-    return ^OCUICenter *(id <OCUILayoutInterface> child) {
+- (OCUICenter *(^)(UIView *view))objc_child {
+    return ^OCUICenter *(UIView *view) {
+        self.childView = view;
+        [self objc_layout];
         return self;
     };
 }
-
 
 @end

@@ -8,7 +8,9 @@
 
 @interface OCUIBasicLayout : NSObject <OCUILayoutInterface>
 
+@property(nonatomic, strong) UIView *entityView;
+@property(nonatomic, strong) UIView *childView;
 
-- (void)addSubLayout:(OCUIBasicLayout *)basicLayout;
+- (void)objc_layout;
 
 @end

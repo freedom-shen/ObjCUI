@@ -93,6 +93,15 @@
     [[textView rac_willDeallocSignal] subscribeCompleted:^{
         NSLog(@"textView is safe");
     }];
+
+    UIView *redView = [[UIView alloc] init];
+    redView.backgroundColor = [UIColor blueColor];
+    [self.view addSubview:redView];
+    [redView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(100).with.inset(200);
+        make.top.mas_equalTo(200);
+        make.width.height.mas_equalTo(150);
+    }];
 }
 
 @end

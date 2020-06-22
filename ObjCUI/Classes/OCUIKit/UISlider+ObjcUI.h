@@ -3,8 +3,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OCUIControlConvert.h"
-#import "OCUIViewConvert.h"
+#import "OCUIKitDefine.h"
 
 @interface UISlider (ObjcUI)
 

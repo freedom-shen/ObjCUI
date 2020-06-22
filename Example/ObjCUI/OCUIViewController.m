@@ -9,6 +9,7 @@
 #import "OCUIViewController.h"
 #import "OCUIKitTestVC.h"
 #import "OCUITableViewTestVC.h"
+#import "OCUILayoutTestVC.h"
 
 typedef void (^OCUIDataDidSelect)();
 
@@ -92,6 +93,7 @@ typedef void (^OCUIDataDidSelect)();
         _dataArray = @[
                 [[OCUIData alloc] initWithName:@"Kit" didSelect:[self _goToController:[OCUIKitTestVC class]]],
                 [[OCUIData alloc] initWithName:@"TableView" didSelect:[self _goToController:[OCUITableViewTestVC class]]],
+                [[OCUIData alloc] initWithName:@"Layout" didSelect:[self _goToController:[OCUILayoutTestVC class]]],
         ];
     }
     return _dataArray;

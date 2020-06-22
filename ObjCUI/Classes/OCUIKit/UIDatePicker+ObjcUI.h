@@ -3,8 +3,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OCUIControlConvert.h"
-#import "OCUIViewConvert.h"
+#import "OCUIKitDefine.h"
 
 @interface UIDatePicker (ObjcUI)
 

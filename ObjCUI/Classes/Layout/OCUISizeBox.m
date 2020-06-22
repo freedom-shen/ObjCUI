@@ -3,6 +3,7 @@
 //
 
 #import "OCUISizeBox.h"
+#import "../../../../../../../Library/Caches/AppCode2019.2/DerivedData/ObjCUI-dapjkxbffwjdxxfmubrbjlgedhob/Build/Products/Debug-iphonesimulator/ObjCUI/ObjCUI.framework/Headers/OCUILayoutEnum.h"
 
 
 @implementation OCUISizeBox
@@ -28,8 +29,22 @@
     };
 }
 
-- (OCUISizeBox *(^)(id <OCUILayoutInterface> child))objc_child {
-    return ^OCUISizeBox *(id <OCUILayoutInterface> child) {
+- (OCUISizeBox *(^)(double ratio))objc_widthRatio {
+    return ^OCUISizeBox *(double ratio) {
+        self.ocui_layoutMap[@(OCUILayoutWidthRatioType)] = @(ratio);
+        return self;
+    };
+}
+
+- (OCUISizeBox *(^)(double ratio))objc_heightRatio {
+    return ^OCUISizeBox *(double ratio) {
+        self.ocui_layoutMap[@(OCUILayoutHeightRatioType)] = @(ratio);
+        return self;
+    };
+}
+
+- (OCUISizeBox *(^)(UIView *))objc_child {
+    return ^OCUISizeBox *(UIView *view) {
         return self;
     };
 }
