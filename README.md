@@ -72,7 +72,7 @@ self.view = UITableView
         });
 ```
 
-## 约束
+## Layout
 
 在UIView中已存在对于Masonary的映射方法
 
