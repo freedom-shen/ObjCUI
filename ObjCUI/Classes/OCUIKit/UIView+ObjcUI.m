@@ -2,7 +2,7 @@
 // Created by freedom on 2020/6/20.
 //
 
-#import <Masonry/Masonry-umbrella.h>
+#import <Masonry/Masonry.h>
 #import "UIView+ObjcUI.h"
 
 
