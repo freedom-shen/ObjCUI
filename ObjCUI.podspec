@@ -5,7 +5,6 @@ Pod::Spec.new do |s|
   s.summary          = '使用Objc编写类似声明氏UI'
 
   s.license  = 'MIT'
-  s.watchos.deployment_target = '2.0'
 
   s.homepage         = 'https://github.com/freedom-shen/ObjCUI'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
