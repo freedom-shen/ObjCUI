@@ -38,7 +38,7 @@ UILabel.objc_create().objc_text(@"test").objc_textColor([UIColor redColor]).objc
 
 UIButton *button = [[UIButton alloc] init];
 [button setTitle:@"我来做个测试" forState:UIControlStateNormal];
-[button addTarget:self action:@selector() forControlEvents:UIControlEventTouchUpInside];
+[button addTarget:self action:@selector(buttonTouch:) forControlEvents:UIControlEventTouchUpnside];
 
 // after 
 UIButton *button = UIButton
