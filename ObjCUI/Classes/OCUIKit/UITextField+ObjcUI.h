@@ -50,7 +50,7 @@
 
 - (UITextField *(^)(BOOL (^)(UITextField *textFiled)))objc_textFieldShouldReturn;
 
-OCUIViewChildHeaderCreate(UITextField);
 OCUIControlChildHeaderCreate(UITextField);
+OCUIViewChildHeaderCreate(UITextField);
 
 @end

@@ -1,6 +1,6 @@
 PODS:
   - Masonry (1.1.0)
-  - ObjCUI (0.1.0):
+  - ObjCUI (0.1.1):
     - Masonry
   - ReactiveObjC (3.1.1)
 
@@ -19,9 +19,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  ObjCUI: 4919cf7bb1e9dc3bd5086a0ec08eef9207b68567
+  ObjCUI: ace79f0ea56845897f405a38946af946c739fef3
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
 
 PODFILE CHECKSUM: 4bc6d5cf38ccec0fef374e3876598055e7460a2e
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

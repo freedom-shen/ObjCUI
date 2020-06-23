@@ -2,6 +2,7 @@
 // Created by freedom on 2020/6/20.
 //
 
+#import <Masonry/Masonry-umbrella.h>
 #import "UIView+ObjcUI.h"
 
 
@@ -335,6 +336,14 @@
         if (pFunction) {
             pFunction(self);
         }
+        return self;
+    };
+}
+
+- (UIView *(^)(UIView *superView, MASBlockMaker blockMaker))objc_putSuperView {
+    return ^UIView *(UIView *superView,MASBlockMaker blockMaker) {
+        [superView addSubview:self];
+        [self mas_makeConstraints:blockMaker];
         return self;
     };
 }

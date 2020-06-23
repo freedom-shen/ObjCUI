@@ -1,3 +1,8 @@
+
+@class MASConstraintMaker;
+
+typedef void(^MASBlockMaker)(MASConstraintMaker *maker);
+
 #define OCUIViewChildHeaderCreate(__UIViewClassName__)  +(__UIViewClassName__ *(^)())objc_create; \
 + (__UIViewClassName__ *(^)(UIView *view, NSInteger tag))objc_createTag; \
 + (__UIViewClassName__ *(^)(CGRect frame))objc_createFrame; \
@@ -44,6 +49,7 @@
 - (__UIViewClassName__ *(^)(UIViewTintAdjustmentMode tintAdjustmentMode))objc_tintAdjustmentMode API_AVAILABLE(ios(7.0)); \
 - (__UIViewClassName__ *(^)(UIGestureRecognizer *gestureRecognizer))objc_gestureRecognizer; \
 - (__UIViewClassName__ *(^)(UIGestureRecognizer *gestureRecognizer))objc_removeGestureRecognizer; \
+- (__UIViewClassName__ *(^)(UIView *superView, MASBlockMaker blockMaker))objc_putSuperView; \
 - (__UIViewClassName__ *(^)(void(^)(__UIViewClassName__ *view)))objc_maker; \
 
 
