@@ -270,6 +270,8 @@
 		DA2DF4C54D6C21E70E730DF2FE2B2095 /* RACScheduler.h in Headers */ = {isa = PBXBuildFile; fileRef = A986DF3061355DB51DDF1AD84B05FF17 /* RACScheduler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DADBA695D4FAC5EBD674FA04C33C1350 /* RACSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D10892C5E537B03B117B2B5B17507E7 /* RACSequence.m */; };
 		DBE0CE1B1DCA471F7368EB1F016A449A /* UIImageView+ObjcUI.h in Headers */ = {isa = PBXBuildFile; fileRef = DF6B44CDE56731992B1C1A59B971FA72 /* UIImageView+ObjcUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DC02C57B6CBCB921C25AAB54 /* UICollectionView+ObjcUI.m in Sources */ = {isa = PBXBuildFile; fileRef = DC02CEA19807D014C7CC6CE1 /* UICollectionView+ObjcUI.m */; };
+		DC02C64EEABBD44C8EFB8542 /* UICollectionView+ObjcUI.h in Headers */ = {isa = PBXBuildFile; fileRef = DC02CF68047A52C28AAE13BC /* UICollectionView+ObjcUI.h */; };
 		DD152AC00D70A443B197C6C19874BED7 /* OCUITextFiledDelegateWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 36303BFB635F82D9317788F71C66ECEC /* OCUITextFiledDelegateWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DDDDEAA31A9E1F29C248AF42EC54F8B1 /* NSString+RACSequenceAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 20C182F0030CB89E7D6BD11530D6907A /* NSString+RACSequenceAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DEF96F987336ECAFAD7A474761F416E2 /* OCUITextFiledDelegateWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA15DD10A78888ECF681F6163B45465 /* OCUITextFiledDelegateWrapper.m */; };
@@ -646,6 +648,8 @@
 		DA77B13E3FD8C2737ACCCAC7E1CE18A6 /* OCUIControlWrapper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = OCUIControlWrapper.m; sourceTree = "<group>"; };
 		DB8C87C0DCE9584DA0236A0D7CB3142A /* Pods-ObjCUI_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ObjCUI_Example.release.xcconfig"; sourceTree = "<group>"; };
 		DBDA46D8327D6C19477618A52B5A04D2 /* NSObject+RACPropertySubscribing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+RACPropertySubscribing.h"; path = "ReactiveObjC/NSObject+RACPropertySubscribing.h"; sourceTree = "<group>"; };
+		DC02CEA19807D014C7CC6CE1 /* UICollectionView+ObjcUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+ObjcUI.m"; sourceTree = "<group>"; };
+		DC02CF68047A52C28AAE13BC /* UICollectionView+ObjcUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+ObjcUI.h"; sourceTree = "<group>"; };
 		DC52986BBD73E5081732582D23E37FC6 /* UIPickerView+ObjcUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIPickerView+ObjcUI.m"; sourceTree = "<group>"; };
 		DC9BE892EB81392FF93A8CCB40D3F824 /* Masonry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Masonry.release.xcconfig; sourceTree = "<group>"; };
 		DE8FEB0FAA4AF326063985C450E51BD0 /* RACTupleSequence.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACTupleSequence.m; path = ReactiveObjC/RACTupleSequence.m; sourceTree = "<group>"; };
@@ -1192,6 +1196,8 @@
 				1B4E1B669BFF7127D9B7C9C7D458EDB7 /* UIView+ObjcUI.h */,
 				3FA2DFBA873F8A69D452A0C0BE909051 /* UIView+ObjcUI.m */,
 				8A54D3AB5B342B35039C53611C54B539 /* wrapper */,
+				DC02CEA19807D014C7CC6CE1 /* UICollectionView+ObjcUI.m */,
+				DC02CF68047A52C28AAE13BC /* UICollectionView+ObjcUI.h */,
 			);
 			name = OCUIKit;
 			path = ObjCUI/Classes/OCUIKit;
@@ -1301,6 +1307,7 @@
 				C44AE4192C5295B77D176DC1078FB5BA /* UITextView+ObjcUI.h in Headers */,
 				D5467466139A16667835A3C9185EA3B7 /* UIView+Layout.h in Headers */,
 				7079613C6B2623D0B3104EBA4B4B1794 /* UIView+ObjcUI.h in Headers */,
+				DC02C64EEABBD44C8EFB8542 /* UICollectionView+ObjcUI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1788,6 +1795,7 @@
 				1062EC9208227540553E93D90937BAE0 /* UITextView+ObjcUI.m in Sources */,
 				1259BF29390D8734AA6A2D6D2F6E5687 /* UIView+Layout.m in Sources */,
 				9C869912107466A6CCBFA3C3C1782B7A /* UIView+ObjcUI.m in Sources */,
+				DC02C57B6CBCB921C25AAB54 /* UICollectionView+ObjcUI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
